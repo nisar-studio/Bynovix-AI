@@ -119,8 +119,8 @@ serve(async (req: Request) => {
       confidence,
       explanation: input.explanation || `Automated insight generated from analytical data. Confidence: ${confidence}%`,
       status: "active",
-      source_data: input.source_data || null,
-      supporting_metrics: input.supporting_metrics || null,
+      source_data: input.source_data || {},
+      supporting_metrics: input.supporting_metrics || {},
     };
 
     const { data: insight, error: insErr } = await supabase
