@@ -1,0 +1,365 @@
+<main class="ml-64 flex-1 flex flex-col h-full bg-[#111111] relative z-10">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-lg py-sm border-b border-gray-800 bg-[#0a0a0a] sticky top-0 z-10 h-[64px]">
+<div class="flex items-center gap-md flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-gray-500 text-lg">search</span>
+<input class="w-full pl-xl pr-sm py-[6px] bg-[#1a1a1a] border border-gray-800 rounded text-body-sm font-body-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-primary transition-colors" placeholder="Search audit logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md ml-auto">
+<button class="p-xs rounded-full hover:bg-gray-800 transition-colors text-gray-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded-full hover:bg-gray-800 transition-colors text-gray-400">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="p-xs rounded-full hover:bg-gray-800 transition-colors text-gray-400">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-button text-button border border-gray-800 ml-sm">
+                    JD
+                </div>
+</div>
+</header>
+<!-- Workspace Content -->
+<div class="flex-1 overflow-y-auto p-lg lg:p-xl space-y-lg max-w-[1440px] mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-white">Security &amp; Audit Logs</h2>
+<p class="font-body-md text-body-md text-gray-400 mt-xs max-w-2xl">Monitor security events, access changes, and activity across the Bynovix Intelligence Suite.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-sm py-[6px] border border-gray-800 bg-[#1a1a1a] rounded font-button text-button text-gray-300 hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                        Last 7 Days
+                    </button>
+<button class="flex items-center gap-xs px-sm py-[6px] border border-gray-800 bg-[#1a1a1a] rounded font-button text-button text-gray-300 hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-xs px-sm py-[6px] bg-primary text-white rounded font-button text-button hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Logs
+                    </button>
+</div>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-md">
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md">
+<h3 class="font-label-mono text-label-mono text-gray-400 uppercase mb-sm">Events Today</h3>
+<div class="font-display-kpi text-display-kpi text-white">184</div>
+</div>
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md">
+<h3 class="font-label-mono text-label-mono text-[#f87171] uppercase mb-sm">Critical Events</h3>
+<div class="font-display-kpi text-display-kpi text-[#f87171]">3</div>
+</div>
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md">
+<h3 class="font-label-mono text-label-mono text-[#f87171] uppercase mb-sm">Failed Attempts</h3>
+<div class="font-display-kpi text-display-kpi text-[#f87171]">7</div>
+</div>
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md">
+<h3 class="font-label-mono text-label-mono text-gray-400 uppercase mb-sm">Active Users</h3>
+<div class="font-display-kpi text-display-kpi text-white">21</div>
+</div>
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md">
+<h3 class="font-label-mono text-label-mono text-gray-400 uppercase mb-sm">Data Changes</h3>
+<div class="font-display-kpi text-display-kpi text-white">46</div>
+</div>
+</div>
+<!-- Main Workspace Two-Column Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-lg h-[600px]">
+<!-- Left/Center Column: High-density Audit Log Table -->
+<div class="xl:col-span-2 bg-[#1a1a1a] border border-gray-800 rounded-lg flex flex-col overflow-hidden">
+<div class="px-md py-sm border-b border-gray-800 bg-[#0a0a0a] flex justify-between items-center">
+<h3 class="font-body-lg text-body-lg font-semibold text-white">Activity Log</h3>
+<span class="font-label-mono text-label-mono text-gray-400">Live Updates <span class="inline-block w-2 h-2 rounded-full bg-primary-fixed ml-xs animate-pulse"></span></span>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead class="bg-[#111111] font-label-mono text-label-mono text-gray-400 border-b border-gray-800 sticky top-0 z-10">
+<tr>
+<th class="py-sm px-md font-medium uppercase tracking-wider">Timestamp</th>
+<th class="py-sm px-md font-medium uppercase tracking-wider">User</th>
+<th class="py-sm px-md font-medium uppercase tracking-wider">Event</th>
+<th class="py-sm px-md font-medium uppercase tracking-wider">Module</th>
+<th class="py-sm px-md font-medium uppercase tracking-wider">Severity</th>
+<th class="py-sm px-md font-medium uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-gray-300 divide-y divide-gray-800">
+<!-- Row 1 Active -->
+<tr class="bg-gray-800/50 cursor-pointer hover:bg-gray-800 transition-colors">
+<td class="py-sm px-md font-label-mono text-gray-400">10:42 AM</td>
+<td class="py-sm px-md font-medium text-white">Sarah Lee</td>
+<td class="py-sm px-md">Permission updated</td>
+<td class="py-sm px-md">Team</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#854d0e]/20 text-[#fef08a] border border-[#854d0e]/30">Medium</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Successful
+                                        </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="cursor-pointer hover:bg-gray-800 transition-colors">
+<td class="py-sm px-md font-label-mono text-gray-400">10:35 AM</td>
+<td class="py-sm px-md">John Doe</td>
+<td class="py-sm px-md">Report exported</td>
+<td class="py-sm px-md">Reports</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">Low</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Successful
+                                        </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="cursor-pointer hover:bg-gray-800 transition-colors">
+<td class="py-sm px-md font-label-mono text-gray-400">10:12 AM</td>
+<td class="py-sm px-md">Mike Kim</td>
+<td class="py-sm px-md">Failed login attempt</td>
+<td class="py-sm px-md">Security</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#7f1d1d]/30 text-[#fca5a5] border border-[#7f1d1d]/50">Critical</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#f87171]">
+<span class="material-symbols-outlined text-[16px]">block</span> Blocked
+                                        </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="cursor-pointer hover:bg-gray-800 transition-colors">
+<td class="py-sm px-md font-label-mono text-gray-400">09:55 AM</td>
+<td class="py-sm px-md">Anna Lin</td>
+<td class="py-sm px-md">Data source configured</td>
+<td class="py-sm px-md">Data Sources</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#9a3412]/30 text-[#fdba74] border border-[#9a3412]/50">High</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Successful
+                                        </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="cursor-pointer hover:bg-gray-800 transition-colors">
+<td class="py-sm px-md font-label-mono text-gray-400">09:30 AM</td>
+<td class="py-sm px-md">Tom Ross</td>
+<td class="py-sm px-md">Forecast viewed</td>
+<td class="py-sm px-md">Forecasts</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">Low</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#4ade80]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Successful
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Detail Panel -->
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md flex flex-col">
+<div class="flex items-center justify-between border-b border-gray-800 pb-sm mb-md">
+<h3 class="font-body-lg text-body-lg font-semibold text-white flex items-center gap-sm">
+<span class="material-symbols-outlined text-gray-400">info</span> Event Details
+                        </h3>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-md pr-xs">
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center font-button text-white border border-gray-700 shrink-0">
+                                SL
+                            </div>
+<div>
+<div class="font-body-md font-medium text-white">Sarah Lee</div>
+<div class="font-body-sm text-gray-400">sarah.lee@bynovix.com</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-[#111111] border border-gray-800 p-sm rounded">
+<div class="font-label-mono text-[10px] text-gray-500 uppercase mb-xs">Timestamp</div>
+<div class="font-body-sm text-gray-300">Oct 24, 10:42 AM</div>
+</div>
+<div class="bg-[#111111] border border-gray-800 p-sm rounded">
+<div class="font-label-mono text-[10px] text-gray-500 uppercase mb-xs">Module</div>
+<div class="font-body-sm text-gray-300">Team Permissions</div>
+</div>
+</div>
+<div class="bg-[#111111] border border-gray-800 p-sm rounded">
+<div class="font-label-mono text-[10px] text-gray-500 uppercase mb-xs">Event Type</div>
+<div class="font-body-sm font-medium text-white flex items-center gap-xs">
+                                Permission updated
+                                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#854d0e]/20 text-[#fef08a] border border-[#854d0e]/30 ml-auto">Medium</span>
+</div>
+</div>
+<div class="bg-[#111111] border border-gray-800 p-sm rounded">
+<div class="font-label-mono text-[10px] text-gray-500 uppercase mb-xs">Change Payload</div>
+<div class="flex items-center gap-md">
+<div class="flex-1 bg-[#1a1a1a] p-xs rounded border border-gray-800 border-dashed text-center">
+<span class="font-body-sm text-gray-500 line-through">View Only</span>
+</div>
+<span class="material-symbols-outlined text-gray-600 text-sm">arrow_forward</span>
+<div class="flex-1 bg-[#1a1a1a] p-xs rounded border border-primary-fixed/50 text-center relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary-fixed"></div>
+<span class="font-body-sm text-primary-fixed font-medium">Manage Access</span>
+</div>
+</div>
+</div>
+<div class="space-y-sm pt-sm border-t border-gray-800">
+<h4 class="font-label-mono text-label-mono text-gray-500 uppercase">Context</h4>
+<div class="flex items-center justify-between py-xs">
+<span class="font-body-sm text-gray-400">Device / IP</span>
+<span class="font-label-mono text-[12px] text-gray-300">Chrome / 192.168.1.1</span>
+</div>
+<div class="flex items-center justify-between py-xs">
+<span class="font-body-sm text-gray-400">Location</span>
+<span class="font-body-sm text-gray-300 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-gray-500">location_on</span> San Francisco, CA
+                                </span>
+</div>
+<div class="flex items-center justify-between py-xs">
+<span class="font-body-sm text-gray-400">Result</span>
+<span class="font-body-sm text-[#4ade80] font-medium">Successful</span>
+</div>
+</div>
+</div>
+<div class="pt-md mt-auto border-t border-gray-800 flex gap-sm">
+<button class="flex-1 px-sm py-xs border border-gray-700 text-white bg-[#1a1a1a] rounded font-button text-button hover:bg-gray-800 transition-colors">
+                            View Member
+                        </button>
+<button class="flex-1 px-sm py-xs bg-primary text-white rounded font-button text-button hover:bg-primary/90 transition-colors">
+                            Related Activity
+                        </button>
+</div>
+</div>
+</div>
+<!-- Security Summary Section (Compact) -->
+<div class="bg-[#1a1a1a] border border-gray-800 rounded-lg p-md mt-lg">
+<h3 class="font-body-md font-semibold text-white mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-fixed">verified_user</span> System Security Health
+                </h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md divide-x divide-gray-800">
+<div class="px-md first:pl-0">
+<div class="font-label-mono text-label-mono text-gray-400 uppercase mb-xs">Last Security Scan</div>
+<div class="font-body-md text-white font-medium flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-[#4ade80]"></span> 2h ago (Healthy)
+                        </div>
+</div>
+<div class="px-md">
+<div class="font-label-mono text-label-mono text-gray-400 uppercase mb-xs">Auth Health</div>
+<div class="font-body-md text-primary-fixed font-medium">Excellent</div>
+</div>
+<div class="px-md">
+<div class="font-label-mono text-label-mono text-gray-400 uppercase mb-xs">MFA Adoption</div>
+<div class="font-body-md text-white font-medium">100%</div>
+</div>
+<div class="px-md">
+<div class="font-label-mono text-label-mono text-gray-400 uppercase mb-xs">Suspicious Activity</div>
+<div class="font-body-md text-white font-medium">None Detected</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var events = await window.DB.getAuditEvents();
+    var threats = await window.DB.getThreats();
+    var playbooks = await window.DB.getPlaybooks();
+    var secActions = await window.DB.getSecurityActions();
+    var approvals = await window.DB.getApprovals();
+    var auditEntries = await window.DB.getAuditEntries();
+    var lineageEdges = await window.DB.getLineageEdges();
+
+    // Update KPI cards with real data
+    var kpis = document.querySelectorAll('.font-display-kpi');
+    if (kpis[0]) kpis[0].textContent = events.length;
+    var critCount = events.filter(function(e){return e.severity==='critical';}).length;
+    if (kpis[1]) kpis[1].textContent = critCount;
+    var failCount = events.filter(function(e){return e.event_type&&e.event_type.includes('failed');}).length;
+    if (kpis[2]) kpis[2].textContent = failCount;
+
+    // Rebuild audit log table with real data
+    var tbody = document.querySelector('tbody');
+    if (tbody) {
+      var html = '';
+      events.forEach(function(ev){
+        var time = ev.created_at ? new Date(ev.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : '—';
+        var user = ev.user_email || ev.user_id ? ev.user_id.slice(0,8) : 'System';
+        var sevClass = ev.severity==='critical'?'bg-[#7f1d1d]/30 text-[#fca5a5] border border-[#7f1d1d]/50':ev.severity==='high'?'bg-[#9a3412]/30 text-[#fdba74] border border-[#9a3412]/50':ev.severity==='medium'?'bg-[#854d0e]/20 text-[#fef08a] border border-[#854d0e]/30':'bg-gray-800 text-gray-300 border border-gray-700';
+        var sevLabel = ev.severity ? ev.severity.charAt(0).toUpperCase()+ev.severity.slice(1) : 'Low';
+        var statusIcon = ev.status==='failed'||ev.severity==='critical'?'block':'check_circle';
+        var statusClass = ev.status==='failed'||ev.severity==='critical'?'text-[#f87171]':'text-[#4ade80]';
+        var statusText = ev.status==='failed'||ev.severity==='critical'?'Blocked':'Successful';
+        html += '<tr class="cursor-pointer hover:bg-gray-800 transition-colors">';
+        html += '<td class="py-sm px-md font-label-mono text-gray-400">'+time+'</td>';
+        html += '<td class="py-sm px-md font-medium text-white">'+user+'</td>';
+        html += '<td class="py-sm px-md">'+(ev.event_type||ev.title||'Event')+'</td>';
+        html += '<td class="py-sm px-md">'+(ev.module||'Security')+'</td>';
+        html += '<td class="py-sm px-md"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium '+sevClass+'">'+sevLabel+'</span></td>';
+        html += '<td class="py-sm px-md"><span class="inline-flex items-center gap-xs '+statusClass+'"><span class="material-symbols-outlined text-[16px]">'+statusIcon+'</span> '+statusText+'</span></td>';
+        html += '</tr>';
+      });
+      tbody.innerHTML = html;
+    }
+
+    // Update KPI count for events
+    if (kpis[4]) kpis[4].textContent = events.length;
+    
+    // Update security KPIs
+    var totalEvents = events.length;
+    var criticalEvents = events.filter(function(e){return e.severity==='critical';}).length;
+    var activeThreats = threats.filter(function(t){return t.status==='investigating';}).length;
+    var blockedEvents = events.filter(function(e){return e.status==='blocked';}).length;
+    
+    // The security page has rich static content - update the event table
+    var tables = document.querySelectorAll('table');
+    tables.forEach(function(table){
+      var tbody = table.querySelector('tbody');
+      if (tbody && tbody.querySelectorAll('tr').length > 0) {
+        // Check if this looks like an audit events table
+        var firstRow = tbody.querySelector('tr');
+        if (firstRow && firstRow.textContent.includes('Login') || firstRow.textContent.includes('Security') || firstRow.textContent.includes('Permission')) {
+          var html = '';
+          events.forEach(function(e){
+            var sevClass = e.severity==='critical'?'text-red-400 bg-red-500/10':e.severity==='high'?'text-orange-400 bg-orange-500/10':'text-gray-400 bg-gray-500/10';
+            var statusClass = e.status==='blocked'?'text-red-400':e.status==='successful'?'text-green-400':'text-yellow-400';
+            var icon = e.severity==='critical'?'shield':'info';
+            html += '<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] transition-colors cursor-pointer">';
+            html += '<td class="p-3"><div class="flex items-center gap-2">';
+            html += '<span class="material-symbols-outlined text-sm '+sevClass.split(' ')[0]+'">'+icon+'</span>';
+            html += '<span class="text-white text-sm">'+e.event_type.replace(/_/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();})+'</span></div></td>';
+            html += '<td class="p-3"><span class="text-xs text-gray-400">'+e.module+'</span></td>';
+            html += '<td class="p-3"><span class="px-2 py-0.5 rounded text-xs '+sevClass+'">'+e.severity.toUpperCase()+'</span></td>';
+            html += '<td class="p-3"><span class="'+statusClass+' text-xs">'+e.status+'</span></td>';
+            html += '<td class="p-3 text-xs text-gray-500">'+new Date(e.created_at).toLocaleString()+'</td></tr>';
+          });
+          tbody.innerHTML = html;
+        }
+      }
+    });
+    
+    // Update threat cards if present
+    var threatCards = document.querySelectorAll('[class*="threat"]');
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

@@ -1,0 +1,304 @@
+<main class="ml-64 flex-1 flex flex-col h-full bg-[#0a0a0c] relative">
+<!-- Top Nav Area (Simplified for Workspace focus) -->
+<header class="h-16 border-b border-[#1f1f22] flex justify-between items-center px-lg bg-[#0a0a0c]/80 backdrop-blur-md sticky top-0 z-40">
+<div class="flex items-center gap-2 text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-size: 18px;">history</span>
+<span class="font-body-sm text-body-sm">Session #4829 - Q3 Analysis</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-tertiary-container hover:text-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="text-on-tertiary-container hover:text-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="bg-[#111114] border border-[#1f1f22] text-surface-container-lowest px-3 py-1.5 rounded-DEFAULT font-button text-button hover:bg-[#1f1f22] transition-colors">
+                        Export Report
+                    </button>
+</div>
+</header>
+<!-- Workspace & Right Panel Layout -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Central Workspace -->
+<div class="flex-1 flex flex-col h-full overflow-y-auto px-xl py-lg">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-lg">
+<!-- Input Area -->
+<div class="relative w-full">
+<div class="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl blur-md -z-10"></div>
+<div class="bg-[#111114] border border-[#1f1f22] rounded-xl p-2 flex items-center shadow-lg focus-within:border-[#6366f1] transition-colors">
+<span class="material-symbols-outlined text-[#6366f1] pl-3 pr-2">auto_awesome</span>
+<input class="flex-1 bg-transparent border-none text-surface-container-lowest font-body-lg text-body-lg focus:ring-0 placeholder:text-on-tertiary-container" placeholder="Ask a business question..." type="text" value="Why did revenue decline this month?"/>
+<button class="bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-2 rounded-lg flex items-center justify-center mr-1">
+<span class="material-symbols-outlined text-white">send</span>
+</button>
+</div>
+</div>
+<!-- AI Response Section -->
+<div class="flex flex-col gap-md mt-sm">
+<!-- Executive Summary -->
+<div class="bg-[#111114] border-l-2 border-[#00d4ff] rounded-r-xl border-y border-r border-[#1f1f22] p-lg ai-border-glow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined" style="font-size: 120px;">psychology</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-6 h-6 rounded-full bg-[#00d4ff]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#00d4ff]" style="font-size: 14px;">insights</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-surface-container-lowest">Executive Summary</h2>
+</div>
+<div class="flex gap-4 mb-4 border-b border-[#1f1f22] pb-3"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-on-tertiary-container" style="font-size: 14px;">database</span><span class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Source: Salesforce CRM</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-on-tertiary-container" style="font-size: 14px;">calendar_today</span><span class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Period: Last 30 Days</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[#00d4ff]" style="font-size: 14px;">verified</span><span class="font-label-mono text-[10px] text-[#00d4ff] uppercase">Confidence: 92%</span></div></div><p class="font-body-lg text-body-lg text-surface-container-lowest mb-6 leading-relaxed">
+                                    The <span class="text-error font-semibold">-12.4%</span> overall revenue decline this month is primarily driven by a sharp drop in <strong class="text-white">Product B sales</strong> within the <strong class="text-white">South Region</strong>, compounded by a slight dip in overall customer activity. A strong performance from Product A partially offset these losses.
+                                </p>
+<!-- Key Findings Grid -->
+<h3 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Key Drivers</h3>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<!-- Driver 1 -->
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4">
+<div class="flex justify-between items-start mb-2">
+<span class="font-body-sm text-body-sm text-on-tertiary-container">Product B Revenue</span>
+<span class="material-symbols-outlined text-error" style="font-size: 18px;">trending_down</span>
+</div>
+<div class="font-display-kpi text-[32px] font-bold text-surface-container-lowest mb-1">-23%</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-container">Missed forecast by $1.2M</p>
+</div>
+<!-- Driver 2 -->
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4">
+<div class="flex justify-between items-start mb-2">
+<span class="font-body-sm text-body-sm text-on-tertiary-container">South Region Sales</span>
+<span class="material-symbols-outlined text-error" style="font-size: 18px;">map</span>
+</div>
+<div class="font-display-kpi text-[32px] font-bold text-surface-container-lowest mb-1">-31%</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-container">Supply chain disruption impact</p>
+</div>
+<!-- Driver 3 -->
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4">
+<div class="flex justify-between items-start mb-2">
+<span class="font-body-sm text-body-sm text-on-tertiary-container">Customer Activity</span>
+<span class="material-symbols-outlined text-error" style="font-size: 18px;">group</span>
+</div>
+<div class="font-display-kpi text-[32px] font-bold text-surface-container-lowest mb-1">-8%</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-container">Daily active users decline</p>
+</div>
+<!-- Offset -->
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-12 h-12 bg-[#00d4ff]/10 rounded-bl-full"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="font-body-sm text-body-sm text-on-tertiary-container">Product A Revenue</span>
+<span class="material-symbols-outlined text-[#00d4ff]" style="font-size: 18px;">trending_up</span>
+</div>
+<div class="font-display-kpi text-[32px] font-bold text-surface-container-lowest mb-1">+18%</div>
+<div class="inline-flex items-center gap-1 bg-[#00d4ff]/10 text-[#00d4ff] px-2 py-0.5 rounded-sm font-label-mono text-[10px] uppercase">
+<span class="material-symbols-outlined" style="font-size: 12px;">verified</span>
+                                            Offsetting Factor
+                                        </div>
+</div>
+</div>
+<!-- Data Evidence Visuals (Mocked with layout) -->
+<h3 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Data Evidence</h3>
+<div class="grid grid-cols-2 gap-4 mb-6 h-48">
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4 flex flex-col">
+<span class="font-body-sm text-body-sm text-on-tertiary-container mb-2">Revenue: Actual vs Prior Period</span>
+<div class="flex-1 w-full relative">
+<!-- Simple CSS representation of a chart -->
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-[#1f1f22]"></div>
+<div class="absolute bottom-0 left-0 h-full w-[1px] bg-[#1f1f22]"></div>
+<!-- Prior Line (dotted) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<path d="M0,80 Q50,60 100,50 T200,30 T300,40" fill="none" stroke="#3f3f46" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+<!-- Current Line -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<path d="M0,80 Q50,70 100,80 T200,110 T300,120" fill="none" stroke="#6366f1" stroke-width="2"></path>
+</svg>
+<div class="absolute top-2 right-2 flex flex-col gap-1">
+<div class="flex items-center gap-1 font-label-mono text-[10px] text-on-tertiary-container"><div class="w-2 h-2 rounded-full bg-[#3f3f46]"></div> Prior</div>
+<div class="flex items-center gap-1 font-label-mono text-[10px] text-surface-container-lowest"><div class="w-2 h-2 rounded-full bg-[#6366f1]"></div> Current</div>
+</div>
+</div>
+</div>
+<div class="bg-[#0a0a0c] border border-[#1f1f22] rounded-lg p-4 flex flex-col">
+<span class="font-body-sm text-body-sm text-on-tertiary-container mb-2">Revenue by Region Variance</span>
+<div class="flex-1 w-full flex items-end gap-2 justify-around pb-4 relative">
+<div class="absolute bottom-4 left-0 w-full h-[1px] bg-[#1f1f22]"></div>
+<!-- Bars -->
+<div class="w-8 bg-[#3f3f46] h-[60%] rounded-t-sm relative group"><span class="absolute -bottom-4 text-[10px] font-label-mono text-on-tertiary-container left-1/2 -translate-x-1/2">N</span></div>
+<div class="w-8 bg-[#3f3f46] h-[75%] rounded-t-sm relative group"><span class="absolute -bottom-4 text-[10px] font-label-mono text-on-tertiary-container left-1/2 -translate-x-1/2">E</span></div>
+<div class="w-8 bg-error/80 border border-error h-[30%] rounded-t-sm relative group"><span class="absolute -bottom-4 text-[10px] font-label-mono text-surface-container-lowest left-1/2 -translate-x-1/2">S</span></div>
+<div class="w-8 bg-[#3f3f46] h-[65%] rounded-t-sm relative group"><span class="absolute -bottom-4 text-[10px] font-label-mono text-on-tertiary-container left-1/2 -translate-x-1/2">W</span></div>
+</div>
+</div>
+</div>
+<!-- Recommendation -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-xl p-lg mt-6 bg-gradient-to-br from-[#111114] to-[#1a1a24] shadow-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md font-semibold text-surface-container-lowest flex items-center gap-2">
+<span class="material-symbols-outlined text-[#a855f7]">lightbulb</span>
+            Strategic Recommendation
+        </h3>
+<div class="flex items-center gap-2 bg-[#0a0a0c] px-3 py-1 rounded-full border border-[#1f1f22]">
+<span class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Confidence</span>
+<span class="text-[#00d4ff] font-bold text-body-sm">92%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-8">
+<div class="md:col-span-2">
+<p class="font-body-lg text-body-lg text-surface-container-lowest mb-4 leading-relaxed">
+                Initiate a <span class="text-white font-semibold">targeted promotional campaign</span> for Product B specifically in the South Region to counteract the supply chain disruption impact. Leverage Product A's momentum by bundling high-performing SKUs.
+            </p>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#00d4ff] mt-1" style="font-size: 20px;">info</span>
+<div>
+<h4 class="font-label-mono text-[10px] text-on-tertiary-container uppercase mb-1">Why this works</h4>
+<p class="text-body-sm text-on-tertiary-container">Historical data from Q2 shows a 14% recovery rate when regional disruptions are met with localized incentives within 15 days.</p>
+</div>
+</div>
+<div class="bg-[#0a0a0c]/50 p-4 rounded-lg border border-[#1f1f22] flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Expected Business Impact</span>
+<span class="text-[#00d4ff] font-bold text-headline-md">+$450k Recovery</span>
+</div>
+<button class="text-[#a855f7] font-button text-button flex items-center gap-1 hover:underline">
+                        Supporting Evidence <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-3">
+<button class="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-button text-button py-3 px-6 rounded-DEFAULT transition-all hover:opacity-90 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                    Create Action
+                    <span class="material-symbols-outlined" style="font-size: 18px;">add_task</span>
+</button>
+<button class="w-full bg-transparent border border-[#1f1f22] text-on-tertiary-container hover:text-white hover:bg-[#1f1f22] font-button text-button py-3 px-6 rounded-DEFAULT transition-colors flex items-center justify-center gap-2">
+                    View Evidence
+                    <span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Details Form -->
+<div class="border-t border-[#1f1f22] pt-6">
+<h4 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-4">Action Details</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Owner</label>
+<div class="flex items-center gap-2 bg-[#0a0a0c] border border-[#1f1f22] rounded-sm p-2">
+<div class="w-6 h-6 rounded-full bg-[#6366f1] flex items-center justify-center text-[10px] font-bold">SJ</div>
+<span class="text-body-sm text-white">Sarah Jenkins</span>
+<span class="material-symbols-outlined text-on-tertiary-container ml-auto" style="font-size: 18px;">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Priority</label>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 rounded-full border border-[#a855f7] bg-[#a855f7]/10 text-[#a855f7] font-button text-[12px]">High</button>
+<button class="flex-1 py-1.5 rounded-full border border-[#1f1f22] text-on-tertiary-container font-button text-[12px] hover:bg-[#1f1f22]">Medium</button>
+<button class="flex-1 py-1.5 rounded-full border border-[#1f1f22] text-on-tertiary-container font-button text-[12px] hover:bg-[#1f1f22]">Low</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Due Date</label>
+<div class="flex items-center gap-2 bg-[#0a0a0c] border border-[#1f1f22] rounded-sm p-2">
+<span class="material-symbols-outlined text-on-tertiary-container" style="font-size: 18px;">calendar_today</span>
+<span class="text-body-sm text-white">Oct 24, 2023</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-[10px] text-on-tertiary-container uppercase">Notes</label>
+<textarea class="bg-[#0a0a0c] border border-[#1f1f22] rounded-sm text-body-sm p-2 focus:border-[#6366f1] focus:ring-0 text-white h-20 resize-none" placeholder="Add implementation details...">Coordinate with regional logistics lead to ensure stock availability before launch.</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Context Panel -->
+<aside class="w-80 border-l border-[#1f1f22] bg-[#0a0a0c] flex flex-col h-full shrink-0">
+<!-- Connection Status -->
+<div class="p-md border-b border-[#1f1f22]">
+<h4 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Data Sources</h4>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00d4ff]" style="font-size: 16px;">database</span>
+<span class="font-body-sm text-body-sm text-surface-container-lowest">Salesforce CRM</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-[#00d4ff] shadow-[0_0_8px_rgba(0,212,255,0.8)]"></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00d4ff]" style="font-size: 16px;">table_chart</span>
+<span class="font-body-sm text-body-sm text-surface-container-lowest">Snowflake DW</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-[#00d4ff] shadow-[0_0_8px_rgba(0,212,255,0.8)]"></span>
+</div>
+</div>
+</div>
+<!-- Suggested Questions -->
+<div class="p-md border-b border-[#1f1f22] flex-1">
+<h4 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Follow-up Queries</h4>
+<div class="flex flex-col gap-2">
+<button class="text-left p-3 rounded-lg border border-[#1f1f22] hover:bg-[#111114] transition-colors font-body-sm text-body-sm text-surface-container-lowest flex items-start gap-2 group">
+<span class="material-symbols-outlined text-on-tertiary-container group-hover:text-[#6366f1] transition-colors" style="font-size: 16px; margin-top: 2px;">chat_bubble</span>
+<span>What caused the supply chain disruption in the South Region?</span>
+</button>
+<button class="text-left p-3 rounded-lg border border-[#1f1f22] hover:bg-[#111114] transition-colors font-body-sm text-body-sm text-surface-container-lowest flex items-start gap-2 group">
+<span class="material-symbols-outlined text-on-tertiary-container group-hover:text-[#6366f1] transition-colors" style="font-size: 16px; margin-top: 2px;">chat_bubble</span>
+<span>Forecast Product B revenue if we run a 15% discount campaign.</span>
+</button>
+<button class="text-left p-3 rounded-lg border border-[#1f1f22] hover:bg-[#111114] transition-colors font-body-sm text-body-sm text-surface-container-lowest flex items-start gap-2 group">
+<span class="material-symbols-outlined text-on-tertiary-container group-hover:text-[#6366f1] transition-colors" style="font-size: 16px; margin-top: 2px;">chat_bubble</span>
+<span>Show me the demographic breakdown of the customer activity drop.</span>
+</button>
+</div>
+</div>
+<!-- History snippet -->
+<div class="p-md h-1/3 overflow-y-auto">
+<h4 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Recent History</h4>
+<div class="flex flex-col gap-3">
+<div class="font-body-sm text-body-sm text-on-tertiary-container truncate">
+<span class="text-[#a855f7] mr-1">Q:</span> Compare Q2 vs Q3 margins...
+                            </div>
+<div class="font-body-sm text-body-sm text-on-tertiary-container truncate">
+<span class="text-[#a855f7] mr-1">Q:</span> Top performing reps in East...
+                            </div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    // AI Analyst is an interactive chat interface
+    // Update data sources panel with live connection status
+    var sources = await window.DB.getSourceConnections();
+    var panel = document.querySelector('aside');
+    if (panel) {
+      var srcHtml = '<h4 class="font-label-mono text-label-mono text-on-tertiary-container uppercase mb-3">Data Sources</h4><div class="flex flex-col gap-2">';
+      sources.forEach(function(s){
+        var color = s.status==='connected'?'[#00d4ff]':s.status==='syncing'?'yellow-400':'red-400';
+        srcHtml += '<div class="flex items-center justify-between"><div class="flex items-center gap-2">';
+        srcHtml += '<span class="material-symbols-outlined text-['+color+']" style="font-size: 16px;">database</span>';
+        srcHtml += '<span class="font-body-sm text-body-sm text-surface-container-lowest">'+s.name+'</span></div>';
+        srcHtml += '<span class="w-2 h-2 rounded-full bg-['+color+'] shadow-[0_0_8px_rgba(0,212,255,0.8)]"></span></div>';
+      });
+      srcHtml += '</div>';
+      var srcSection = panel.querySelector('.p-md.border-b');
+      if (srcSection) srcSection.innerHTML = srcHtml;
+    }
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

@@ -1,0 +1,384 @@
+<main class="ml-64 mt-16 p-6 h-[calc(100vh-4rem)] overflow-y-auto w-full flex flex-col gap-6 bg-[#0a0a0c]">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-headline-lg text-3xl font-semibold text-white">Actions</h2>
+<p class="font-body-md text-base text-gray-400 mt-1">Turn AI recommendations into measurable business outcomes.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-[#111114] border border-[#1f1f22] rounded text-white hover:bg-[#1a1a1f] transition-colors font-button text-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                    Date Range
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-[#111114] border border-[#1f1f22] rounded text-white hover:bg-[#1a1a1f] transition-colors font-button text-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors font-button text-sm shadow-sm">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Create Action
+                </button>
+</div>
+</div>
+<!-- KPI Summary Cards -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<!-- Card 1 -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-4 flex flex-col">
+<span class="font-label-mono text-xs text-gray-400 uppercase">Open Actions</span>
+<span class="font-display-kpi text-4xl font-bold text-white mt-2"><span id="act-open">—</span></span>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-4 flex flex-col relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+<span class="font-label-mono text-xs text-gray-400 uppercase">Overdue</span>
+<span class="font-display-kpi text-4xl font-bold text-red-500 mt-2"><span id="act-overdue">—</span></span>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-4 flex flex-col">
+<span class="font-label-mono text-xs text-gray-400 uppercase">Due This Week</span>
+<span class="font-display-kpi text-4xl font-bold text-white mt-2"><span id="act-week">—</span></span>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-4 flex flex-col">
+<span class="font-label-mono text-xs text-gray-400 uppercase">Completed</span>
+<span class="font-display-kpi text-4xl font-bold text-green-500 mt-2"><span id="act-completed">—</span></span>
+</div>
+<!-- Card 5 (AI Impact) -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-4 flex flex-col border-l-2 border-purple-500">
+<div class="flex justify-between items-center">
+<span class="font-label-mono text-xs text-gray-400 uppercase flex items-center gap-1">
+                        Expected Impact
+                        <span class="material-symbols-outlined text-[14px] text-purple-400">auto_awesome</span>
+</span>
+</div>
+<span class="font-display-kpi text-4xl font-bold mt-2 ai-text-gradient">$2.8M</span>
+</div>
+</div>
+<!-- Main Two-Column Layout -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-0">
+<!-- Column 1: Action List & Table (8 cols) -->
+<div class="lg:col-span-8 flex flex-col bg-[#111114] border border-[#1f1f22] rounded-lg overflow-hidden">
+<!-- Table Header/Filters -->
+<div class="p-4 border-b border-[#1f1f22] flex justify-between items-center bg-[#111114]">
+<div class="flex gap-3">
+<select class="bg-[#0a0a0c] border border-[#1f1f22] rounded px-3 py-1.5 font-body-sm text-sm text-white focus:ring-1 focus:ring-purple-500 outline-none">
+<option>Status: All</option>
+<option>To Do</option>
+<option>In Progress</option>
+<option>Blocked</option>
+<option>Completed</option>
+</select>
+<select class="bg-[#0a0a0c] border border-[#1f1f22] rounded px-3 py-1.5 font-body-sm text-sm text-white focus:ring-1 focus:ring-purple-500 outline-none">
+<option>Priority: All</option>
+<option>Critical</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+</div>
+<span class="font-label-mono text-xs text-gray-400">Showing 4 of 18</span>
+</div>
+<!-- Table Content -->
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-[#0a0a0c] border-b border-[#1f1f22] z-10">
+<tr>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Action</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Source</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Lineage</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Priority</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Status</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold text-right">Impact</th>
+<th class="p-3 font-label-mono text-xs text-gray-400 font-semibold">Lineage</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-sm">
+<!-- Row 1 (Selected) -->
+<tr class="border-b border-[#1f1f22] bg-purple-900/20 hover:bg-purple-900/30 cursor-pointer transition-colors">
+<td class="p-3">
+<div class="flex items-center gap-2">
+<div class="font-medium text-white">Recover South Region Revenue</div>
+<span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] font-bold tracking-wide uppercase">Recently Updated</span>
+</div>
+<div class="text-gray-400 text-xs mt-1">Due: Aug 28 • Marketing</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/40 text-purple-400 border border-purple-700/50 text-xs font-label-mono">
+<span class="material-symbols-outlined text-[12px]">psychology</span> AI Insights
+                                    </span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 text-red-400">
+<span class="material-symbols-outlined text-[14px] fill">warning</span> Critical
+                                    </span>
+</td>
+<td class="p-3">
+<span class="px-2 py-1 rounded-full bg-[#1a1a1f] text-gray-300 border border-[#2a2a35] text-xs font-medium">In Progress</span>
+</td>
+<td class="p-3 text-right">
+<div class="font-medium text-white">$450K</div>
+<div class="text-purple-400 text-xs mt-1 flex items-center justify-end gap-1">
+                                        Conf: 94% <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-500 w-[94%]"></div></div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] cursor-pointer transition-colors">
+<td class="p-3">
+<div class="font-medium text-white">Increase Product B Inventory...</div>
+<div class="text-gray-400 text-xs mt-1">Due: Sep 02 • Operations</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#1a1a1f] text-gray-300 border border-[#2a2a35] text-xs font-label-mono">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> Forecast
+                                    </span>
+</td>
+<td class="p-3">
+<span class="text-red-400 font-medium">High</span>
+</td>
+<td class="p-3">
+<span class="px-2 py-1 rounded-full border border-[#2a2a35] text-gray-300 text-xs font-medium">To Do</span>
+</td>
+<td class="p-3 text-right">
+<div class="font-medium text-white">$620K</div>
+<div class="text-purple-400 text-xs mt-1 flex items-center justify-end gap-1">
+                                        Conf: 96% <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-500 w-[96%]"></div></div>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] cursor-pointer transition-colors">
+<td class="p-3">
+<div class="font-medium text-white">Launch Enterprise Cross-Sell...</div>
+<div class="text-gray-400 text-xs mt-1">Due: Sep 05 • Sales</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/40 text-purple-400 border border-purple-700/50 text-xs font-label-mono">
+<span class="material-symbols-outlined text-[12px]">psychology</span> AI Insights
+                                    </span>
+</td>
+<td class="p-3">
+<span class="text-red-400 font-medium">High</span>
+</td>
+<td class="p-3">
+<span class="px-2 py-1 rounded-full bg-[#1a1a1f] text-gray-300 border border-[#2a2a35] text-xs font-medium">In Progress</span>
+</td>
+<td class="p-3 text-right">
+<div class="font-medium text-white">$280K</div>
+<div class="text-purple-400 text-xs mt-1 flex items-center justify-end gap-1">
+                                        Conf: 88% <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-500 w-[88%]"></div></div>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] cursor-pointer transition-colors">
+<td class="p-3">
+<div class="font-medium text-gray-400">Review South Region Pricing...</div>
+<div class="text-gray-500 text-xs mt-1">Due: Sep 08 • Revenue Team</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/20 text-purple-500 border border-purple-700/30 text-xs font-label-mono opacity-80">
+<span class="material-symbols-outlined text-[12px]">smart_toy</span> AI Analyst
+                                    </span>
+</td>
+<td class="p-3">
+<span class="text-gray-400 font-medium">Medium</span>
+</td>
+<td class="p-3">
+<span class="px-2 py-1 rounded-full bg-red-900/20 text-red-400 border border-red-900/50 text-xs font-medium flex items-center gap-1 w-max">
+<span class="material-symbols-outlined text-[12px]">block</span> Blocked
+                                    </span>
+</td>
+<td class="p-3 text-right opacity-80">
+<div class="font-medium text-white">$190K</div>
+<div class="text-purple-500 text-xs mt-1 flex items-center justify-end gap-1">
+                                        Conf: 81% <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-600 w-[81%]"></div></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Column 2: Action Detail Panel (4 cols) -->
+<div class="lg:col-span-4 flex flex-col bg-[#111114] border border-[#1f1f22] rounded-lg overflow-y-auto">
+<!-- Detail Header -->
+<div class="p-4 border-b border-[#1f1f22] bg-gradient-to-b from-purple-900/10 to-[#111114]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2 bg-[#1a1a1f] border border-[#2a2a35] rounded-full p-1 pr-3">
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-600 text-white text-xs font-medium shadow-[0_0_10px_rgba(168,85,247,0.4)]">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> In Progress
+                                </div>
+<div class="w-8 h-1 bg-[#2a2a35] rounded-full overflow-hidden">
+<div class="w-[20%] h-full bg-gray-500"></div>
+</div>
+<span class="text-[10px] text-gray-400 font-label-mono uppercase">1/5 Done</span>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<h3 class="font-headline-md text-2xl font-semibold text-white mb-2">Recover South Region Revenue</h3>
+<div class="flex items-center gap-4 font-label-mono text-xs text-gray-400 mt-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">person</span> Marketing</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> Aug 28</span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<!-- AI Context Card -->
+<div class="bg-purple-900/10 border border-purple-500/20 rounded-lg p-3 ai-border-glow">
+<div class="flex items-center gap-1 mb-2 text-purple-400 font-label-mono text-xs">
+<span class="material-symbols-outlined text-[16px]">psychology</span> AI Recommendation
+                        </div>
+<p class="font-body-sm text-sm text-gray-300">"Recover South Region Revenue based on AI Insights detection of pricing elasticities and competitor shifts."</p>
+<div class="mt-3 pt-3 border-t border-purple-500/10 flex justify-between items-end">
+<div>
+<span class="block text-xs text-gray-400 mb-1">Expected Outcome</span>
+<span class="font-headline-md text-xl font-bold text-white ai-text-gradient">$450K</span>
+</div>
+<span class="text-xs text-purple-400 font-label-mono">over 30 days</span>
+</div>
+</div>
+<!-- Business Context Link -->
+<div>
+<h4 class="font-label-mono text-xs text-gray-400 uppercase mb-2">Context</h4>
+<a class="block p-3 border border-[#1f1f22] rounded-lg hover:bg-[#1a1a1f] transition-colors flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-[#1a1a1f] flex items-center justify-center text-gray-400 border border-[#2a2a35]">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+</div>
+<div>
+<span class="block font-body-sm text-sm font-medium text-gray-300 group-hover:text-purple-400 transition-colors">Revenue Anomaly: South...</span>
+<span class="block text-xs text-purple-400 font-medium">View Original Insight</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-purple-400 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Execution Checklist -->
+<div>
+<h4 class="font-label-mono text-xs text-gray-400 uppercase mb-2 flex justify-between items-center">
+                            Execution Checklist
+                            <span class="text-purple-400 cursor-pointer hover:underline">1/5 Done</span>
+</h4>
+<div class="space-y-2">
+<label class="flex items-start gap-2 cursor-pointer group">
+<input checked="" class="mt-1 rounded text-purple-600 focus:ring-purple-500 bg-[#0a0a0c] border-[#3f3f46]" type="checkbox"/>
+<span class="font-body-sm text-sm text-gray-500 line-through group-hover:text-gray-400 transition-colors">Confirm regional data</span>
+</label>
+<label class="flex items-start gap-2 cursor-pointer group">
+<input class="mt-1 rounded text-purple-600 focus:ring-purple-500 bg-[#0a0a0c] border-[#3f3f46]" type="checkbox"/>
+<span class="font-body-sm text-sm text-gray-300 group-hover:text-purple-400 transition-colors">Assign campaign owner</span>
+</label>
+<label class="flex items-start gap-2 cursor-pointer group">
+<input class="mt-1 rounded text-purple-600 focus:ring-purple-500 bg-[#0a0a0c] border-[#3f3f46]" type="checkbox"/>
+<span class="font-body-sm text-sm text-gray-300 group-hover:text-purple-400 transition-colors">Approve budget</span>
+</label>
+<label class="flex items-start gap-2 cursor-pointer group">
+<input class="mt-1 rounded text-purple-600 focus:ring-purple-500 bg-[#0a0a0c] border-[#3f3f46]" type="checkbox"/>
+<span class="font-body-sm text-sm text-gray-300 group-hover:text-purple-400 transition-colors">Launch intervention</span>
+</label>
+<label class="flex items-start gap-2 cursor-pointer group">
+<input class="mt-1 rounded text-purple-600 focus:ring-purple-500 bg-[#0a0a0c] border-[#3f3f46]" type="checkbox"/>
+<span class="font-body-sm text-sm text-gray-300 group-hover:text-purple-400 transition-colors">Measure outcome</span>
+</label>
+</div>
+</div>
+<button class="w-full py-2 border border-dashed border-[#2a2a35] rounded text-gray-400 font-button text-xs hover:bg-[#1a1a1f] hover:text-white transition-colors flex items-center justify-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px]">add</span> Add Item
+                    </button>
+</div>
+<!-- Action Controls Sticky Bottom -->
+<div class="mt-auto p-4 border-t border-[#1f1f22] bg-[#111114] flex gap-3">
+<button class="flex-1 py-2 border border-[#2a2a35] rounded font-button text-sm text-gray-300 hover:bg-[#1a1a1f] hover:text-white transition-colors text-center">
+                        Edit Action
+                    </button>
+<button class="flex-1 py-2 bg-purple-600 rounded font-button text-sm text-white hover:bg-purple-700 transition-colors text-center shadow-sm">
+                        Update Status
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var actions = await window.DB.getActions();
+    var open = actions.filter(function(a){return a.status!=='completed';}).length;
+    var inProg = actions.filter(function(a){return a.status==='in_progress';}).length;
+    var completed = actions.filter(function(a){return a.status==='completed';}).length;
+    var totalImpact = actions.reduce(function(s,a){return s+(a.expected_impact||0);},0);
+    
+    // Update KPI cards
+    var kpis = document.querySelectorAll('.font-display-kpi');
+    if (kpis[0]) kpis[0].textContent = open;
+    if (kpis[1]) kpis[1].textContent = '—'; // overdue needs due_date logic
+    if (kpis[2]) kpis[2].textContent = inProg; // due this week proxy
+    if (kpis[3]) kpis[3].textContent = completed;
+    if (kpis[4]) kpis[4].textContent = fmt$(totalImpact);
+    
+    // Rebuild action table rows
+    var tbody = document.querySelector('tbody');
+    if (tbody) {
+      var html = '';
+      actions.forEach(function(a){
+        var priorityClass = a.priority==='critical'?'text-red-400':a.priority==='high'?'text-red-400':a.priority==='medium'?'text-gray-400':'text-gray-500';
+        var statusClass = a.status==='in_progress'?'bg-purple-600 text-white':a.status==='todo'?'border border-[#2a2a35] text-gray-300':a.status==='blocked'?'bg-red-900/20 text-red-400 border border-red-900/50':'bg-green-900/20 text-green-400';
+        var sourceType = a.source_type==='ai_insight'?'AI Insights':a.source_type==='forecast'?'Forecast':'AI Analyst';
+        var sourceIcon = a.source_type==='ai_insight'?'psychology':a.source_type==='forecast'?'trending_up':'smart_toy';
+        html += '<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] cursor-pointer transition-colors">';
+        html += '<td class="p-3"><div class="font-medium text-white">'+a.title+'</div>';
+        html += '<div class="text-gray-400 text-xs mt-1">Due: '+(a.due_date||'TBD')+' • '+a.owner+'</div></td>';
+        html += '<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/40 text-purple-400 border border-purple-700/50 text-xs font-label-mono">';
+        html += '<span class="material-symbols-outlined text-[12px]">'+sourceIcon+'</span> '+sourceType+'</span></td>';
+        html += '<td class="p-3"><span class="'+priorityClass+' font-medium">'+a.priority.charAt(0).toUpperCase()+a.priority.slice(1)+'</span></td>';
+        html += '<td class="p-3"><span class="px-2 py-1 rounded-full '+statusClass+' text-xs font-medium">'+a.status.replace('_',' ').replace(/\b\w/g,function(c){return c.toUpperCase();})+'</span></td>';
+        html += '<td class="p-3 text-right"><div class="font-medium text-white">'+fmt$(a.expected_impact||0)+'</div>';
+        html += '<div class="text-purple-400 text-xs mt-1 flex items-center justify-end gap-1">Conf: '+a.confidence+'%';
+        html += ' <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-500 w-['+a.confidence+'%]"></div></div></div></td>';
+        // Cross-module lineage: source insight link
+        if (a.source_insight_id && insightMap[a.source_insight_id]) {
+          var ins = insightMap[a.source_insight_id];
+          html += '<td class="p-3"><a href="#ai-insights" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/30 text-purple-300 border border-purple-700/30 text-[10px] font-label-mono hover:bg-purple-900/50 transition-colors" title="Source: '+ins.title+'">';
+          html += '<span class="material-symbols-outlined text-[10px]">link</span> '+ins.title.substring(0,18)+'...</a></td>';
+        } else {
+          html += '<td class="p-3"><span class="text-gray-500 text-xs">—</span></td>';
+        }
+        html += '</tr>';
+      });
+      tbody.innerHTML = html;
+    }
+    
+    // Load insights for cross-module lineage linking
+    var insights = await window.DB.getInsights();
+    var insightMap = {};
+    insights.forEach(function(i){ insightMap[i.id] = i; });
+    
+    // Update detail panel with first in-progress action + linked insight
+    var activeAction = actions.find(function(a){return a.status==='in_progress';}) || actions[0];
+    if (activeAction) {
+      var detailTitle = document.querySelector('.font-headline-md.text-2xl');
+      if (detailTitle) detailTitle.textContent = activeAction.title;
+      var impactEl = document.querySelector('.ai-text-gradient');
+      if (impactEl) impactEl.textContent = fmt$(activeAction.expected_impact||0);
+      // Cross-module: link to source insight in detail panel
+      var contextLink = document.querySelector('.space-y-md a[href="#"]');
+      if (contextLink && activeAction.source_insight_id && insightMap[activeAction.source_insight_id]) {
+        var linkedInsight = insightMap[activeAction.source_insight_id];
+        contextLink.href = '#ai-insights';
+        var titleEl = contextLink.querySelector('.font-body-sm');
+        if (titleEl) titleEl.textContent = linkedInsight.title;
+        var descEl = contextLink.querySelector('.text-purple-400');
+        if (descEl) descEl.textContent = 'View Source Insight ('+linkedInsight.confidence+'% confidence)';
+      }
+    }
+    
+    function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+Math.round(n/1e3)+'K';return'$'+(n||0);}
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

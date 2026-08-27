@@ -1,0 +1,142 @@
+<main class="flex-1 md:ml-64 pt-16 md:pt-0 p-lg md:p-xl max-w-max_width mx-auto w-full flex flex-col gap-lg bg-[#111111]">
+<!-- Header -->
+<div class="flex flex-col gap-xs mb-md">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white">Organization Settings</h2>
+<p class="font-body-md text-body-md text-gray-400">Manage your workspace preferences, security policies, and integrations.</p>
+</div>
+<!-- Settings Layout: Left Nav + Right Canvas -->
+<div class="flex flex-col lg:flex-row gap-xl flex-1">
+<!-- Internal Settings Nav -->
+<nav class="w-full lg:w-64 flex flex-col gap-xs shrink-0">
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-primary-fixed bg-gray-800/50 border-l-2 border-primary-fixed transition-colors" href="#">
+<span class="font-button text-button text-white">Organization Profile</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors" href="#">
+<span class="font-button text-button">Subscription &amp; Usage</span>
+</a>
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors" href="#">
+<span class="font-button text-button">Security Settings</span>
+</a>
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors" href="#">
+<span class="font-button text-button">AI Governance</span>
+</a>
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors" href="#">
+<span class="font-button text-button">Notifications</span>
+</a>
+<a class="flex items-center justify-between px-md py-sm rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors" href="#">
+<span class="font-button text-button">Integrations</span>
+</a>
+</nav>
+<!-- Configuration Area -->
+<div class="flex-1 flex flex-col gap-lg bg-[#1a1a1a] rounded-xl border border-gray-800 p-lg md:p-xl shadow-sm">
+<section class="flex flex-col gap-md border-b border-gray-800 pb-xl">
+<h3 class="font-headline-md text-headline-md text-white border-l-2 border-primary-fixed pl-sm">Organization Profile</h3>
+<div class="flex flex-col md:flex-row gap-lg items-start mt-sm">
+<!-- Avatar Upload -->
+<div class="flex flex-col gap-sm items-center">
+<div class="w-24 h-24 rounded-lg bg-[#111111] flex items-center justify-center border border-gray-700 overflow-hidden group relative cursor-pointer">
+<img src="https://lh3.googleusercontent.com/aida/AEtjO1WDQQKGyhCfypQPVAYEWhDfTeVqvvpupmvC4nf1efyv_YG1uOcMbeyJmcR-QV23lpxLpVm6mOdmLWM04QbwXmjPmOCGkMRSMFljxtKMTRhY-kcGh6EEoJoGTFjlbsVoLEayR7lNDYECihgaXKpKJVbhvVdZboBlhElLINV8MQEuXkWo4w7_w7TUP1YBVfd8dO1vRS91p1pAVBHjOBZ7azPFHJYxTUL69TynIMSyLT7VU3RzwFedllnGZ_0" alt="Bynovix Symbol" class="w-16 h-16 object-contain">
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">upload</span>
+</div>
+</div>
+<span class="font-label-mono text-label-mono text-gray-400">Upload Logo</span>
+</div>
+<!-- Form Fields -->
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-lg w-full">
+<div class="flex flex-col gap-xs">
+<label class="font-body-sm text-body-sm font-semibold text-gray-300">Company Name</label>
+<input class="w-full px-md py-sm rounded bg-[#111111] border border-gray-700 focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed text-white font-body-md transition-colors" type="text" value="Bynovix AI">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-body-sm text-body-sm font-semibold text-gray-300">Industry</label>
+<select class="w-full px-md py-sm rounded bg-[#111111] border border-gray-700 focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed text-white font-body-md transition-colors appearance-none">
+<option>Enterprise Software</option>
+<option>Financial Services</option>
+<option>Healthcare</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="font-body-sm text-body-sm font-semibold text-gray-300">Workspace URL</label>
+<div class="flex rounded overflow-hidden border border-gray-700 focus-within:border-primary-fixed focus-within:ring-1 focus-within:ring-primary-fixed transition-colors">
+<span class="bg-[#0a0a0a] px-md py-sm text-gray-400 font-body-md border-r border-gray-700">bynovix.ai/app/</span>
+<input class="w-full px-md py-sm bg-[#111111] text-white font-body-md border-none focus:ring-0" type="text" value="enterprise-org">
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-white border-l-2 border-primary-fixed pl-sm">Regional Settings</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg mt-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-body-sm text-body-sm font-semibold text-gray-300">Default Timezone</label>
+<select class="w-full px-md py-sm rounded bg-[#111111] border border-gray-700 focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed text-white font-body-md transition-colors">
+<option>Pacific Standard Time (PST)</option>
+<option>Eastern Standard Time (EST)</option>
+<option>Coordinated Universal Time (UTC)</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-body-sm text-body-sm font-semibold text-gray-300">Default Currency</label>
+<select class="w-full px-md py-sm rounded bg-[#111111] border border-gray-700 focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed text-white font-body-md transition-colors">
+<option>USD ($)</option>
+<option>EUR (€)</option>
+<option>GBP (£)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Action Bar -->
+<div class="mt-xl pt-lg border-t border-gray-800 flex justify-end gap-md">
+<button class="px-lg py-sm rounded font-button text-button text-white bg-[#1a1a1a] border border-gray-700 hover:bg-gray-800 transition-colors">Cancel</button>
+<button class="px-lg py-sm rounded font-button text-button bg-primary text-white hover:bg-primary/90 transition-colors shadow-sm">Save Changes</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var policies = await window.DB.getOrgPolicies();
+    var profile = window.AppState.profile;
+    
+    if (policies) {
+      // Update governance values
+      var inputs = document.querySelectorAll('input[type="text"], input[type="number"], input:not([type])');
+      var selects = document.querySelectorAll('select');
+      
+      // Find and update specific policy values
+      document.querySelectorAll('span, div, p').forEach(function(el){
+        var text = el.textContent.trim();
+        if (text === '90%' || text === '90') el.textContent = policies.ai_confidence_gate + '%';
+        if (text === '30 min' || text === '30') el.textContent = policies.session_timeout_minutes + ' min';
+        if (text === '5 attempts' || text === '5') el.textContent = policies.failed_login_threshold + ' attempts';
+      });
+      
+      // Update toggle states for boolean policies
+      document.querySelectorAll('[class*="toggle"], [class*="switch"]').forEach(function(el){
+        // MFA
+        if (el.closest('[class*="mfa"]') || el.previousElementSibling?.textContent?.includes('MFA')) {
+          // Set toggle state based on policy
+        }
+      });
+    }
+    
+    // Update org name from profile
+    if (profile) {
+      document.querySelectorAll('h1, h2, h3').forEach(function(el){
+        if (el.textContent.includes('Organization') || el.textContent.includes('Settings')) {
+          // Keep as is
+        }
+      });
+    }
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

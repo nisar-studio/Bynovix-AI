@@ -1,0 +1,247 @@
+<main class="flex-1 overflow-y-auto p-lg bg-[#0a0a0c]">
+<div class="grid grid-cols-12 gap-gutter max-w-[1440px] mx-auto h-full">
+<!-- Left Panel: Scenario Builder (3 columns) -->
+<aside class="col-span-3 flex flex-col gap-md">
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg p-md shadow-level-1 h-full flex flex-col">
+<div class="border-b border-[#1f1f22] pb-xs mb-sm flex justify-between items-center">
+<h3 class="font-body-md text-body-md font-semibold text-surface-container-lowest">Scenario Variables</h3>
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]">tune</span>
+</div>
+<div class="flex-1 overflow-y-auto pr-xs space-y-md">
+<!-- Variable: Product Price -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-body-sm text-body-sm font-semibold text-surface-container-lowest">Product Price</label>
+<span class="font-label-mono text-label-mono text-error">-10%</span>
+</div>
+<input class="w-full" max="50" min="-50" type="range" value="-10">
+<div class="flex justify-between text-[10px] text-on-tertiary-container font-label-mono">
+<span class="">-50%</span><span class="">0%</span><span class="">+50%</span>
+</div>
+</div>
+<!-- Variable: Marketing Spend -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-body-sm text-body-sm font-semibold text-surface-container-lowest">Marketing Spend</label>
+<span class="font-label-mono text-label-mono text-[#00d4ff]">+25%</span>
+</div>
+<input class="w-full" max="100" min="-50" type="range" value="25">
+<div class="flex justify-between text-[10px] text-on-tertiary-container font-label-mono">
+<span class="">-50%</span><span class="">0%</span><span class="">+100%</span>
+</div>
+</div>
+<!-- Variable: Cust. Acq. Rate -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-body-sm text-body-sm font-semibold text-surface-container-lowest">Cust. Acq. Rate</label>
+<span class="font-label-mono text-label-mono text-[#00d4ff]">+8%</span>
+</div>
+<input class="w-full" max="50" min="-20" type="range" value="8">
+<div class="flex justify-between text-[10px] text-on-tertiary-container font-label-mono">
+<span class="">-20%</span><span class="">0%</span><span class="">+50%</span>
+</div>
+</div>
+<!-- Variable: Discount % -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-body-sm text-body-sm font-semibold text-surface-container-lowest">Discount %</label>
+<span class="font-label-mono text-label-mono text-on-tertiary-container">15%</span>
+</div>
+<input class="w-full" max="50" min="0" type="range" value="15">
+<div class="flex justify-between text-[10px] text-on-tertiary-container font-label-mono">
+<span class="">0%</span><span class="">25%</span><span class="">50%</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Canvas: Impact & Projections (9 columns) -->
+<div class="col-span-9 flex flex-col gap-gutter">
+<!-- Top Row: KPI Impact Cards -->
+<div class="grid grid-cols-4 gap-md">
+<!-- Card 1: Revenue -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg border-ai-top shadow-level-1 p-sm flex flex-col relative overflow-hidden group hover:shadow-level-2 transition-shadow">
+<div class="absolute top-0 right-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-label-mono text-[10px] px-2 py-[2px] rounded-bl-sm z-10 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> PROJECTED
+                            </div>
+<span class="font-label-mono text-label-mono text-on-tertiary-container uppercase tracking-wider mb-xs">Revenue</span>
+<div class="flex items-baseline gap-sm mb-1">
+<span class="font-display-kpi text-[32px] leading-tight font-bold text-surface-container-lowest">$14.1M</span>
+<div class="flex items-center text-[#00d4ff] font-label-mono text-[12px] bg-[#00d4ff]/10 px-1 py-[2px] rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +13.7%
+                                </div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t border-[#1f1f22] pt-1">
+<span class="font-body-sm text-[12px] text-on-tertiary-container">Baseline: $12.4M</span>
+</div>
+</div>
+<!-- Card 2: Profit -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg border-ai-top shadow-level-1 p-sm flex flex-col relative overflow-hidden group hover:shadow-level-2 transition-shadow">
+<span class="font-label-mono text-label-mono text-on-tertiary-container uppercase tracking-wider mb-xs">Profit</span>
+<div class="flex items-baseline gap-sm mb-1">
+<span class="font-display-kpi text-[32px] leading-tight font-bold text-surface-container-lowest">$3.5M</span>
+<div class="flex items-center text-[#00d4ff] font-label-mono text-[12px] bg-[#00d4ff]/10 px-1 py-[2px] rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +9.4%
+                                </div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t border-[#1f1f22] pt-1">
+<span class="font-body-sm text-[12px] text-on-tertiary-container">Baseline: $3.2M</span>
+</div>
+</div>
+<!-- Card 3: Customers -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg border-ai-top shadow-level-1 p-sm flex flex-col relative overflow-hidden group hover:shadow-level-2 transition-shadow">
+<span class="font-label-mono text-label-mono text-on-tertiary-container uppercase tracking-wider mb-xs">Active Cust.</span>
+<div class="flex items-baseline gap-sm mb-1">
+<span class="font-display-kpi text-[32px] leading-tight font-bold text-surface-container-lowest">84.2K</span>
+<div class="flex items-center text-[#00d4ff] font-label-mono text-[12px] bg-[#00d4ff]/10 px-1 py-[2px] rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +18.1%
+                                </div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t border-[#1f1f22] pt-1">
+<span class="font-body-sm text-[12px] text-on-tertiary-container">Baseline: 71.3K</span>
+</div>
+</div>
+<!-- Card 4: Margin -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg shadow-level-1 p-sm flex flex-col relative overflow-hidden group hover:shadow-level-2 transition-shadow">
+<span class="font-label-mono text-label-mono text-on-tertiary-container uppercase tracking-wider mb-xs">Profit Margin</span>
+<div class="flex items-baseline gap-sm mb-1">
+<span class="font-display-kpi text-[32px] leading-tight font-bold text-surface-container-lowest">24.8%</span>
+<div class="flex items-center text-error font-label-mono text-[12px] bg-error/10 px-1 py-[2px] rounded">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> -1.2%
+                                </div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t border-[#1f1f22] pt-1">
+<span class="font-body-sm text-[12px] text-on-tertiary-container">Baseline: 25.8%</span>
+</div>
+</div>
+</div>
+<!-- Middle Section: Visual Projections -->
+<div class="bg-[#111114] border border-[#1f1f22] rounded-lg shadow-level-1 p-md flex-1 min-h-[300px] flex flex-col">
+<div class="flex justify-between items-end border-b border-[#1f1f22] pb-sm mb-md">
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-surface-container-lowest">Projections (12 Months)</h3>
+<p class="font-body-sm text-[13px] text-on-tertiary-container">Baseline vs Scenario Projections for Revenue and Profit</p>
+</div>
+<div class="flex gap-md font-label-mono text-[12px] text-on-tertiary-container">
+<div class="flex items-center gap-xs"><div class="w-3 h-1 bg-[#3f3f46] rounded-full"></div> Baseline Rev</div>
+<div class="flex items-center gap-xs"><div class="w-3 h-1 border-t-2 border-dashed border-[#a855f7]"></div> Projected Rev</div>
+</div>
+</div>
+<!-- Simulated Chart Area -->
+<div class="flex-1 relative border-l border-b border-[#1f1f22] w-full pt-md pr-md pb-md flex items-end">
+<!-- Y Axis Labels -->
+<div class="absolute left-[-40px] bottom-0 top-0 flex flex-col justify-between text-[10px] text-on-tertiary-container font-label-mono items-end pr-1 py-md">
+<span class="">$16M</span><span class="">$14M</span><span class="">$12M</span><span class="">$10M</span>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pt-md pb-md pointer-events-none">
+<div class="w-full border-t border-[#1f1f22] h-0"></div>
+<div class="w-full border-t border-[#1f1f22] h-0"></div>
+<div class="w-full border-t border-[#1f1f22] h-0"></div>
+<div class="w-full border-t border-[#1f1f22] h-0"></div>
+</div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-[-24px] left-0 right-0 flex justify-between text-[10px] text-on-tertiary-container font-label-mono px-md">
+<span class="">Jan</span><span class="">Mar</span><span class="">May</span><span class="">Jul</span><span class="">Sep</span><span class="">Nov</span>
+</div>
+<!-- SVG Chart Lines Placeholder -->
+<svg class="w-full h-full absolute inset-0 pt-md pb-md pl-md pr-md" preserveAspectRatio="none">
+<!-- Baseline Revenue (Solid Dark) -->
+<path class="opacity-50" d="M0,100 C100,90 200,95 300,80 C400,60 500,70 600,50 C700,45 800,40 1000,30" fill="none" stroke="#3f3f46" stroke-width="2"></path>
+<!-- Projected Revenue (Teal AI Dashed) -->
+<path d="M0,100 C100,80 200,70 300,50 C400,30 500,20 600,10 C700,5 800,0 1000,0" fill="none" stroke="#a855f7" stroke-dasharray="6,4" stroke-width="3"></path>
+<!-- Area Fill under projection -->
+<path class="opacity-20" d="M0,100 C100,80 200,70 300,50 C400,30 500,20 600,10 C700,5 800,0 1000,0 L1000,150 L0,150 Z" fill="url(#ai-gradient)"></path>
+<defs>
+<linearGradient id="ai-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#a855f7"></stop>
+<stop offset="100%" stop-color="#0a0a0c" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+</div>
+<!-- Bottom Row: AI Analysis & Rec -->
+<div class="grid grid-cols-3 gap-md">
+<!-- AI Analysis -->
+<div class="col-span-2 bg-[#111114] border border-[#1f1f22] rounded-lg border-ai p-md shadow-level-1 ai-border-glow">
+<div class="flex items-center gap-xs mb-sm pb-xs border-b border-[#1f1f22]">
+<span class="material-symbols-outlined text-[#a855f7] text-[20px]">auto_awesome</span>
+<h3 class="font-body-sm font-semibold text-surface-container-lowest">AI Scenario Analysis</h3>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<h4 class="font-label-mono text-[11px] text-on-tertiary-container uppercase mb-xs tracking-wider">Impact Drivers</h4>
+<div class="space-y-sm">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-body-sm text-[12px]"><span class="text-on-tertiary-container">Marketing Spend (+25%)</span> <span class="font-semibold text-surface-container-lowest">+68% Impact</span></div>
+<div class="w-full bg-[#1f1f22] h-1.5 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-[#6366f1] to-[#a855f7] w-[68%] h-full"></div></div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-body-sm text-[12px]"><span class="text-on-tertiary-container">Price Reduction (-10%)</span> <span class="font-semibold text-surface-container-lowest">+32% Impact</span></div>
+<div class="w-full bg-[#1f1f22] h-1.5 rounded-full overflow-hidden"><div class="bg-[#00d4ff] w-[32%] h-full"></div></div>
+</div>
+</div>
+</div>
+<div class="pl-md border-l border-[#1f1f22]">
+<h4 class="font-label-mono text-[11px] text-on-tertiary-container uppercase mb-xs tracking-wider">Risks &amp; Assumptions</h4>
+<ul class="list-disc pl-4 font-body-sm text-[13px] text-on-tertiary-container space-y-1">
+<li class="">Competitor Response likely within Q2.</li>
+<li class="">Assumes Market Saturation remains below 60%.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Recommendation -->
+<div class="col-span-1 bg-[#111114] border border-[#1f1f22] rounded-lg p-md shadow-level-1 bg-gradient-to-br from-[#111114] to-[#1a1a24] relative overflow-hidden flex flex-col justify-between">
+<div class="absolute top-0 right-0 p-2">
+<span class="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-label-mono text-[10px] px-2 py-1 rounded">94% CONFIDENCE</span>
+</div>
+<div>
+<h4 class="font-label-mono text-[11px] text-on-tertiary-container uppercase mb-sm tracking-wider flex items-center gap-1">
+                                    Recommendation
+                                </h4>
+<p class="font-body-sm text-[14px] leading-relaxed text-surface-container-lowest font-medium">
+                                    "Proceed with controlled roll-out in South Region. Expected 14% margin recovery within 6 months."
+                                </p>
+</div>
+<button class="mt-auto w-full bg-transparent border border-[#1f1f22] text-on-tertiary-container hover:text-white hover:bg-[#1f1f22] font-button text-button py-2 rounded transition-colors flex justify-center items-center gap-xs mt-4">
+                                Create Action Plan <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var scenarios = await window.DB.getSimulationScenarios();
+    var base = await window.DB.getForecasts();
+    var baseForecast = base.find(function(f){return f.scenario==='base';});
+    var scenario = scenarios[0];
+    
+    if (scenario && scenario.projected_metrics) {
+      var pm = scenario.projected_metrics;
+      // Update KPI cards with scenario data
+      var kpis = document.querySelectorAll('.font-display-kpi');
+      if (kpis[0]) kpis[0].textContent = fmt$(pm.revenue);
+      if (kpis[1]) kpis[1].textContent = fmt$(pm.profit);
+    }
+    
+    // Update scenario variables from database
+    if (scenario && scenario.variables) {
+      var vars = scenario.variables;
+      var labels = document.querySelectorAll('label.font-body-sm');
+      var spans = document.querySelectorAll('span.font-label-mono.text-error, span.font-label-mono.text-\\[#00d4ff\\]');
+    }
+    
+    function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+n.toLocaleString();}
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

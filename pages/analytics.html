@@ -1,0 +1,98 @@
+<main class="flex-1 overflow-y-auto p-lg">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">Analytics</h2><div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-sm text-primary dark:text-primary-fixed-dim">database</span>
+<span class="font-label-mono text-label-mono text-slate-500">Data Source: Salesforce CRM (Mapped)</span>
+</div>
+<p class="font-body-md text-body-md text-slate-400 mt-xs">Explore business performance, trends, and drivers.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-card-slate border border-slate-700 text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">calendar_today</span> Last 12 Months
+                    </button>
+<button class="bg-card-slate border border-slate-700 text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
+                        Compare
+                    </button>
+<button class="bg-primary hover:bg-primary-container text-white font-button text-button px-md py-sm rounded flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> Export
+                    </button>
+</div>
+</div>
+<!-- Empty state for brief execution -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Total Revenue -->
+<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+  <div class="flex justify-between items-start">
+    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">Total Revenue</span>
+    <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">link</span>
+  </div>
+  <div id="a-revenue" class="text-headline-lg font-bold text-white">—</div>
+  <div class="flex items-center gap-xs">
+    <span class="material-symbols-outlined text-sm text-primary">verified</span>
+    <span class="text-slate-500 font-label-mono text-label-mono" id="a-revenue-map">Loading...</span>
+  </div>
+</div>
+<!-- Growth Rate -->
+<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+  <div class="flex justify-between items-start">
+    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">MoM Growth</span>
+    <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">link</span>
+  </div>
+  <div id="a-growth" class="text-headline-lg font-bold text-white">—</div>
+  <div class="flex items-center gap-xs">
+    <span class="material-symbols-outlined text-sm text-primary">verified</span>
+    <span class="text-slate-500 font-label-mono text-label-mono" id="a-growth-map">Loading...</span>
+  </div>
+</div>
+<!-- Baseline Records -->
+<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+  <div class="flex justify-between items-start">
+    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">Processed Records</span>
+    <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">database</span>
+  </div>
+  <div id="a-records" class="text-headline-lg font-bold text-white">—</div>
+  <div class="flex items-center gap-xs">
+    <span class="material-symbols-outlined text-sm text-primary">verified</span>
+    <span class="text-slate-500 font-label-mono text-label-mono" id="a-records-map">Loading...</span>
+  </div>
+</div>
+</div>
+<!-- Regional Breakdown -->
+<div class="mt-lg">
+<h3 class="font-headline-md text-headline-md text-white mb-md">Regional Revenue Breakdown</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md" id="a-regions"></div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var ar = await window.DB.getAnalyticalResults();
+    var a = ar[0];
+    if (a && a.metrics) {
+      var m = a.metrics;
+      document.getElementById('a-revenue').textContent = fmt$(m.total_revenue);
+      document.getElementById('a-revenue-map').textContent = 'Mapped to: analytical_results.metrics.total_revenue';
+      document.getElementById('a-growth').textContent = '+' + m.growth_rate + '%';
+      document.getElementById('a-growth-map').textContent = 'Mapped to: analytical_results.metrics.growth_rate';
+      document.getElementById('a-records').textContent = fmtN(m.baseline_records);
+      document.getElementById('a-records-map').textContent = 'Mapped to: analytical_results.metrics.baseline_records';
+      
+      var regions = m.regions || {};
+      var rNames = {na:'North America',apac:'APAC',emea:'EMEA',latam:'LATAM'};
+      var rEl = document.getElementById('a-regions');
+      Object.keys(rNames).forEach(function(k){
+        var v = regions[k] || 0;
+        rEl.innerHTML += '<div class="bg-card-slate border border-slate-700 p-md rounded-lg"><div class="text-slate-400 font-label-mono text-label-mono uppercase text-sm mb-1">'+rNames[k]+'</div><div class="text-xl font-bold text-white">'+fmt$(v)+'</div></div>';
+      });
+    }
+    function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+n.toLocaleString();}
+    function fmtN(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n.toLocaleString();}
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

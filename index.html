@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bynovix AI - Enterprise Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<style>.material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }</style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "background": "#0B0E14",
+          "surface": "#131720",
+          "surface-raised": "#1A1F2B",
+          "border-light": "#232A3B",
+          "on-background": "#F3F4F6",
+          "on-surface-variant": "#9CA3AF",
+          "primary": "#6366F1",
+          "primary-hover": "#4F46E5",
+          "ai-accent": "#8B5CF6",
+          "ai-bg": "rgba(139, 92, 246, 0.08)",
+          "ai-border": "rgba(139, 92, 246, 0.25)",
+          "brand-dark-base": "#0a0a0c",
+          "brand-dark-surface": "#111114",
+          "brand-dark-border": "#1f1f22",
+          "brand-teal": "#00D4FF",
+          "on-tertiary-container": "#9aaac3"
+        },
+        borderRadius: {
+          DEFAULT: "0.375rem",
+          lg: "0.5rem",
+          xl: "0.75rem",
+          full: "9999px"
+        },
+        spacing: {
+          lg: "24px",
+          margin: "32px",
+          md: "16px",
+          base: "4px",
+          max_width: "1440px",
+          xl: "40px",
+          gutter: "24px",
+          sm: "8px",
+          xs: "4px"
+        },
+        fontFamily: {
+          "label-mono": ["JetBrains Mono", "monospace"],
+          "body-lg": ["Inter", "sans-serif"],
+          "display-kpi": ["Geist", "sans-serif"],
+          "headline-lg": ["Geist", "sans-serif"],
+          "button": ["Inter", "sans-serif"],
+          "body-md": ["Inter", "sans-serif"],
+          "headline-md": ["Geist", "sans-serif"],
+          "body-sm": ["Inter", "sans-serif"]
+        },
+        fontSize: {
+          "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+          "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+          "display-kpi": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+          "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.01em", fontWeight: "600" }],
+          "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600", letterSpacing: "-0.01em" }],
+          "button": ["13px", { lineHeight: "20px", fontWeight: "500" }],
+          "body-md": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+          "body-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .ai-text-gradient { background: linear-gradient(90deg, #8B5CF6, #6366F1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .card-shadow { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2); }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+  .ai-border { border-left: 2px solid #00D4FF; }
+  .ai-glow { box-shadow: inset 2px 0 0 0 #00D4FF; }
+  .ai-border-top { border-top: 2px solid #00D4FF; }
+  .border-ai { border-left: 2px solid #a855f7; }
+  .border-ai-top { border-top: 2px solid #a855f7; }
+  .ai-border-glow { box-shadow: -2px 0 12px rgba(0, 212, 255, 0.15); }
+  .ai-border-glow-violet { box-shadow: -2px 0 12px rgba(168, 85, 247, 0.15); }
+  input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #6366f1; cursor: pointer; margin-top: -6px; box-shadow: 0 0 8px rgba(99, 102, 241, 0.5); }
+  input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #3f3f46; border-radius: 2px; }
+  input[type=range]:focus { outline: none; }
+  /* Page transition */
+  #page-content { animation: fadeIn 0.15s ease-in; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  /* Sidebar nav active state */
+  .nav-active { color: #a855f7 !important; font-weight: 700; border-left: 2px solid #a855f7; background: rgba(17,17,20,1); }
+  .nav-active .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+</style>
+</head>
+<body class="bg-[#0a0a0c] text-gray-100 font-body-md h-screen flex overflow-hidden selection:bg-primary/20 selection:text-primary antialiased">
+
+<!-- ========== LOGIN SCREEN ========== -->
+<div id="login-screen" class="fixed inset-0 z-[9999] bg-[#0a0a0c] flex items-center justify-center" style="display:none;">
+  <div class="w-full max-w-sm mx-4">
+    <!-- Brand -->
+    <div class="text-center mb-8">
+      <img alt="Bynovix AI Logo" class="w-12 h-12 rounded-lg mx-auto mb-4 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiQfyB-uCj0zHUPjpa2hJOPYs-g_SlYIeWohShJMgp-dOQ-qojyhytifrJZxXfZnXLf7ITQHfPxNOdrxg697h3hRBjk83Q7PcnVpkoduLd5UiHaAeSiibt-5yP0bWlPyZlO2Pjh8a4N55Sf8NHFkdrBjFr8SaTVKV8HftqScuWGpIS5kbyYtLgULUZm7iRief3Qhz2DUTo2v5HEC-9tZp5Tbu0U2xG0XrMYGgfaSMLZqDlR9ygkM5b"/>
+      <h1 class="font-headline-lg text-headline-lg text-white font-bold">Bynovix AI</h1>
+      <p class="font-body-sm text-body-sm text-gray-400 mt-1">Enterprise Intelligence Suite</p>
+    </div>
+    <!-- Login Form -->
+    <div class="bg-surface border border-border-light rounded-xl p-6 card-shadow">
+      <h2 class="font-headline-md text-headline-md text-white mb-1">Sign in</h2>
+      <p class="font-body-sm text-body-sm text-gray-400 mb-6">Enter your credentials to access the platform.</p>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="font-label-mono text-label-mono text-gray-400 uppercase block mb-1.5">Email</label>
+          <input id="login-email" type="email" required placeholder="you@company.com"
+            class="w-full h-10 px-3 rounded-lg bg-surface-raised border border-border-light text-white font-body-sm text-body-sm placeholder:text-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+        </div>
+        <div>
+          <label class="font-label-mono text-label-mono text-gray-400 uppercase block mb-1.5">Password</label>
+          <input id="login-password" type="password" required placeholder="••••••••"
+            class="w-full h-10 px-3 rounded-lg bg-surface-raised border border-border-light text-white font-body-sm text-body-sm placeholder:text-gray-600 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+        </div>
+        <div id="login-error" class="text-red-400 text-body-sm hidden"></div>
+        <button type="submit" id="login-btn"
+          class="w-full h-10 rounded-lg bg-primary text-white font-button text-button hover:bg-primary-hover transition-colors shadow-[0_0_15px_rgba(99,102,241,0.3)] disabled:opacity-50 disabled:cursor-not-allowed">
+          Sign In
+        </button>
+      </form>
+    </div>
+    <p class="text-center text-gray-600 text-xs mt-4">Bynovix AI — Enterprise Intelligence Suite</p>
+  </div>
+</div>
+
+<!-- ========== APP SHELL (hidden until auth) ========== -->
+<div id="app-shell" style="visibility:hidden;">
+
+<!-- ========== SIDEBAR ========== -->
+<nav id="sidebar" class="flex flex-col h-screen left-0 w-64 border-r border-[#1f1f22] bg-[#0a0a0c] py-md overflow-y-auto flex-shrink-0 z-50">
+  <!-- Brand -->
+  <div class="px-md pb-lg mb-sm">
+    <div class="flex items-center gap-sm">
+      <img alt="Bynovix AI Logo" class="w-8 h-8 rounded object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiQfyB-uCj0zHUPjpa2hJOPYs-g_SlYIeWohShJMgp-dOQ-qojyhytifrJZxXfZnXLf7ITQHfPxNOdrxg697h3hRBjk83Q7PcnVpkoduLd5UiHaAeSiibt-5yP0bWlPyZlO2Pjh8a4N55Sf8NHFkdrBjFr8SaTVKV8HftqScuWGpIS5kbyYtLgULUZm7iRief3Qhz2DUTo2v5HEC-9tZp5Tbu0U2xG0XrMYGgfaSMLZqDlR9ygkM5b"/>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-bold text-white truncate leading-none">Bynovix AI</h1>
+        <p class="font-label-mono text-label-mono text-on-surface-variant truncate uppercase mt-1">Enterprise Intelligence</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Nav -->
+  <div class="flex-1 px-sm space-y-1" id="nav-main">
+    <a data-page="overview" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#overview">
+      <span class="material-symbols-outlined text-[20px]">dashboard</span>
+      <span class="font-body-sm text-body-sm">Overview</span>
+    </a>
+    <a data-page="analytics" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#analytics">
+      <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+      <span class="font-body-sm text-body-sm">Analytics</span>
+    </a>
+    <a data-page="ai-insights" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all relative group" href="#ai-insights">
+      <span class="material-symbols-outlined text-[20px] text-ai-accent">psychology</span>
+      <span class="font-body-sm text-body-sm">AI Insights</span>
+      <div class="absolute right-3 w-1.5 h-1.5 rounded-full bg-ai-accent shadow-[0_0_8px_rgba(139,92,246,0.8)]"></div>
+    </a>
+    <a data-page="ai-analyst" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#ai-analyst">
+      <span class="material-symbols-outlined text-[20px] text-ai-accent">smart_toy</span>
+      <span class="font-body-sm text-body-sm">AI Analyst</span>
+    </a>
+    <a data-page="forecasts" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#forecasts">
+      <span class="material-symbols-outlined text-[20px]">query_stats</span>
+      <span class="font-body-sm text-body-sm">Forecasts</span>
+    </a>
+    <a data-page="what-if" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#what-if">
+      <span class="material-symbols-outlined text-[20px]">model_training</span>
+      <span class="font-body-sm text-body-sm">What-If Simulator</span>
+    </a>
+    <div class="pt-sm mt-sm border-t border-[#1f1f22]"></div>
+    <a data-page="actions" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#actions">
+      <span class="material-symbols-outlined text-[20px]">bolt</span>
+      <span class="font-body-sm text-body-sm">Actions</span>
+    </a>
+    <a data-page="reports" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#reports">
+      <span class="material-symbols-outlined text-[20px]">description</span>
+      <span class="font-body-sm text-body-sm">Reports</span>
+    </a>
+    <a data-page="data" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#data">
+      <span class="material-symbols-outlined text-[20px]">database</span>
+      <span class="font-body-sm text-body-sm">Data</span>
+    </a>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="px-sm pt-sm mt-auto border-t border-[#1f1f22] space-y-1">
+    <a data-page="team" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#team">
+      <span class="material-symbols-outlined text-[20px] ai-text-gradient">group</span>
+      <span class="font-body-sm text-body-sm">Team</span>
+    </a>
+    <a data-page="settings" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#settings">
+      <span class="material-symbols-outlined text-[20px]">settings</span>
+      <span class="font-body-sm text-body-sm">Settings</span>
+    </a>
+    <a data-page="security" class="nav-link flex items-center gap-sm px-sm py-2 rounded text-gray-400 hover:bg-surface-raised hover:text-white transition-all" href="#security">
+      <span class="material-symbols-outlined text-[20px]">shield</span>
+      <span class="font-body-sm text-body-sm">Security</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ========== MAIN CONTENT ========== -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden bg-[#0a0a0c]">
+
+  <!-- Top Header -->
+  <header class="flex justify-between items-center px-lg h-16 w-full sticky top-0 z-40 bg-[#0a0a0c]/80 backdrop-blur-md border-b border-[#1f1f22] flex-shrink-0">
+    <div class="flex-1 max-w-md relative">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-[20px]">search</span>
+      <input class="w-full h-9 pl-10 pr-4 rounded-full bg-[#1A1D24] border border-[#1F2937] focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm text-body-sm text-white placeholder:text-gray-500" placeholder="Search insights, reports, or ask AI..." type="text"/>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <button class="text-gray-400 hover:text-white transition-colors relative w-8 h-8 flex items-center justify-center rounded hover:bg-surface-raised">
+        <span class="material-symbols-outlined text-[20px]">account_tree</span>
+      </button>
+      <button class="text-gray-400 hover:text-white transition-colors relative w-8 h-8 flex items-center justify-center rounded hover:bg-surface-raised">
+        <span class="material-symbols-outlined text-[20px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-[#0a0a0c]"></span>
+      </button>
+      <button class="text-gray-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded hover:bg-surface-raised mr-2">
+        <span class="material-symbols-outlined text-[20px]">help_outline</span>
+      </button>
+      <div id="user-avatar" class="w-8 h-8 rounded-full bg-[#a855f7] text-white flex items-center justify-center font-button font-bold cursor-pointer hover:opacity-90 transition-opacity">
+        --
+      </div>
+      <button id="logout-btn" class="text-gray-400 hover:text-red-400 transition-colors w-8 h-8 flex items-center justify-center rounded hover:bg-surface-raised" title="Sign out" style="display:none;">
+        <span class="material-symbols-outlined text-[20px]">logout</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Content Area -->
+  <main id="page-content" class="flex-1 overflow-y-auto p-lg md:p-lg">
+    <div class="max-w-[1440px] mx-auto">
+      <!-- Content loaded dynamically -->
+    </div>
+  </main>
+</div>
+
+<!-- ========== ROUTER ========== -->
+<script>
+// ========== SUPABASE CLIENT ==========
+const SUPABASE_URL = 'https://ddsjxafkhxijypgsbvcu.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkc2p4YWZraHhpanlwZ3NidmN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1NzQ0MDEsImV4cCI6MjEwMzE1MDQwMX0.WA_UVawLWJxa5b9zIPe-j4r6ua6uElQf0_L29TyHwPA';
+window._sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ========== GLOBAL AUTH STATE ==========
+window.AppState = {
+  user: null,
+  profile: null,
+  org: null,
+  policies: null
+};
+
+(async function initAuth() {
+  const loginScreen = document.getElementById('login-screen');
+  const appShell = document.getElementById('app-shell');
+  const loginForm = document.getElementById('login-form');
+  const loginError = document.getElementById('login-error');
+  const loginBtn = document.getElementById('login-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  const userAvatar = document.getElementById('user-avatar');
+
+  // Show login screen by default
+  loginScreen.style.display = 'flex';
+
+  // Listen for auth state changes
+  window._sb.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      await loadUserProfile(session.user);
+      showApp();
+    } else if (event === 'SIGNED_OUT') {
+      window.AppState.user = null;
+      window.AppState.profile = null;
+      window.AppState.org = null;
+      window.AppState.policies = null;
+      loginScreen.style.display = 'flex';
+      appShell.style.visibility = 'hidden';
+    }
+  });
+
+  // Check existing session
+  const { data: { session } } = await window._sb.auth.getSession();
+  if (session) {
+    await loadUserProfile(session.user);
+    showApp();
+  }
+
+  // Login form handler
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loginError.classList.add('hidden');
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Signing in...';
+
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    const { data, error } = await window._sb.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      loginError.textContent = error.message;
+      loginError.classList.remove('hidden');
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Sign In';
+    } else {
+      await loadUserProfile(data.user);
+      showApp();
+    }
+  });
+
+  // Logout handler
+  logoutBtn.addEventListener('click', async () => {
+    await window._sb.auth.signOut();
+  });
+
+  async function loadUserProfile(user) {
+    window.AppState.user = user;
+    const { data: profile } = await window._sb.from('profiles').select('*').eq('id', user.id).single();
+    window.AppState.profile = profile;
+    if (profile?.organization_id) {
+      const { data: policies } = await window._sb.from('org_policies').select('*').eq('organization_id', profile.organization_id).single();
+      window.AppState.policies = policies;
+    }
+  }
+
+  function showApp() {
+    const profile = window.AppState.profile;
+    loginScreen.style.display = 'none';
+    appShell.style.visibility = 'visible';
+    logoutBtn.style.display = 'flex';
+    // Set avatar initials
+    if (profile?.full_name) {
+      const parts = profile.full_name.split(' ');
+      userAvatar.textContent = parts.map(p => p[0]).join('').toUpperCase().substring(0, 2);
+    }
+    // Trigger initial page load
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }
+})();
+
+// ========== SUPABASE DATA HELPERS ==========
+window.DB = {
+  async getForecasts() {
+    const { data } = await window._sb.from('forecasts').select('*');
+    return data || [];
+  },
+  async getInsights() {
+    const { data } = await window._sb.from('insights').select('*');
+    return data || [];
+  },
+  async getActions() {
+    const { data } = await window._sb.from('actions').select('*');
+    return data || [];
+  },
+  async getSourceConnections() {
+    const { data } = await window._sb.from('source_connections').select('*');
+    return data || [];
+  },
+  async getAuditEvents() {
+    const { data } = await window._sb.from('audit_events').select('*');
+    return data || [];
+  },
+  async getThreats() {
+    const { data } = await window._sb.from('threats').select('*');
+    return data || [];
+  },
+  async getPlaybooks() {
+    const { data } = await window._sb.from('playbooks').select('*');
+    return data || [];
+  },
+  async getReports() {
+    const { data } = await window._sb.from('reports').select('*');
+    return data || [];
+  },
+  async getProfiles() {
+    const { data } = await window._sb.from('profiles').select('*');
+    return data || [];
+  },
+  async getOrgPolicies() {
+    return window.AppState.policies;
+  },
+  async getAnalyticalResults() {
+    const { data } = await window._sb.from('analytical_results').select('*');
+    return data || [];
+  },
+  async getSimulationScenarios() {
+    const { data } = await window._sb.from('simulation_scenarios').select('*');
+    return data || [];
+  },
+  async getModulePermissions() {
+    const { data } = await window._sb.from('module_permissions').select('*');
+    return data || [];
+  },
+  async getLineageEdges() {
+    const { data } = await window._sb.from('lineage_edges').select('*');
+    return data || [];
+  },
+  async getSecurityActions() {
+    const { data } = await window._sb.from('security_actions').select('*');
+    return data || [];
+  },
+  async getApprovals() {
+    const { data } = await window._sb.from('approvals').select('*');
+    return data || [];
+  },
+  async getAuditEntries() {
+    const { data } = await window._sb.from('audit_entries').select('*');
+    return data || [];
+  },
+  async getSourceFields() {
+    const { data } = await window._sb.from('source_fields').select('*');
+    return data || [];
+  },
+  async getFieldMappings() {
+    const { data } = await window._sb.from('field_mappings').select('*');
+    return data || [];
+  },
+  async getDataQualityMetrics() {
+    const { data } = await window._sb.from('data_quality_metrics').select('*');
+    return data || [];
+  },
+  async getPlaybookRules() {
+    const { data } = await window._sb.from('playbook_rules').select('*');
+    return data || [];
+  },
+  async getLineageFor(entityType, entityId) {
+    const { data } = await window._sb.from('lineage_edges')
+      .select('*')
+      .or('source_entity_type.eq.'+entityType+',target_entity_type.eq.'+entityType)
+      .or('source_entity_id.eq.'+entityId+',target_entity_id.eq.'+entityId);
+    return data || [];
+  },
+  async getEntityLabel(type, id) {
+    const tableMap = {
+      'source_connection': 'source_connections',
+      'field_mapping': 'field_mappings',
+      'analytical_result': 'analytical_results',
+      'forecast': 'forecasts',
+      'insight': 'insights',
+      'action': 'actions',
+      'report': 'reports',
+      'audit_event': 'audit_events',
+      'threat': 'threats',
+      'playbook': 'playbooks',
+      'security_action': 'security_actions',
+      'approval': 'approvals',
+      'audit_entry': 'audit_entries'
+    };
+    const table = tableMap[type];
+    if (!table) return type;
+    const { data } = await window._sb.from(table).select('title,name,event_type,action_type').eq('id', id).single();
+    return data ? (data.title || data.name || data.event_type || data.action_type || id.slice(0,8)) : id.slice(0,8);
+  }
+};
+
+// ========== ROUTER ==========
+(function() {
+  const pages = {
+    'overview': 'pages/overview.html',
+    'analytics': 'pages/analytics.html',
+    'ai-insights': 'pages/ai-insights.html',
+    'ai-analyst': 'pages/ai-analyst.html',
+    'forecasts': 'pages/forecasts.html',
+    'what-if': 'pages/what-if.html',
+    'actions': 'pages/actions.html',
+    'reports': 'pages/reports.html',
+    'data': 'pages/data.html',
+    'team': 'pages/team.html',
+    'settings': 'pages/settings.html',
+    'security': 'pages/security.html'
+  };
+
+  const contentArea = document.getElementById('page-content');
+  const navLinks = document.querySelectorAll('.nav-link');
+  let currentPage = null;
+
+  function updateNav(page) {
+    navLinks.forEach(link => {
+      link.classList.remove('nav-active', 'text-white');
+      link.classList.add('text-gray-400');
+      if (link.dataset.page === page) {
+        link.classList.add('nav-active', 'text-white');
+        link.classList.remove('text-gray-400');
+      }
+    });
+  }
+
+  async function loadPage(page) {
+    if (!pages[page]) page = 'overview';
+    if (currentPage === page) return;
+    currentPage = page;
+
+    updateNav(page);
+    document.title = `Bynovix AI - ${page.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}`;
+
+    try {
+      const resp = await fetch(pages[page]);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const html = await resp.text();
+      contentArea.innerHTML = html;
+      // Execute inline scripts from loaded page
+      const scripts = contentArea.querySelectorAll('script');
+      scripts.forEach(old => {
+        const s = document.createElement('script');
+        s.textContent = old.textContent;
+        old.replaceWith(s);
+      });
+      // Re-trigger Tailwind for dynamic content
+      if (window.tailwind && window.tailwind.rebuild) {
+        window.tailwind.rebuild();
+      }
+    } catch (err) {
+      contentArea.innerHTML = `
+        <div class="flex flex-col items-center justify-center h-[60vh] text-center">
+          <span class="material-symbols-outlined text-6xl text-gray-600 mb-4">error_outline</span>
+          <h2 class="text-xl font-semibold text-white mb-2">Page Not Found</h2>
+          <p class="text-gray-400">Could not load "${page}"</p>
+          <p class="text-gray-500 text-sm mt-1">${err.message}</p>
+        </div>`;
+    }
+  }
+
+  function onHashChange() {
+    const hash = location.hash.slice(1) || 'overview';
+    loadPage(hash);
+  }
+
+  window.addEventListener('hashchange', onHashChange);
+  onHashChange();
+})();
+</script>
+
+</div><!-- /app-shell -->
+
+</body>
+</html>

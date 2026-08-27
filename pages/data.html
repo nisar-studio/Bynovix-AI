@@ -1,0 +1,423 @@
+<main class="ml-64 pt-16 min-h-screen bg-surface p-gutter pb-margin flex flex-col gap-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-white mb-1">Data Sources</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Connect, monitor, and manage the data powering Bynovix Intelligence.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest text-white hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="font-button text-button">Filter</span>
+</button>
+<button class="flex items-center justify-center p-2 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest text-white hover:bg-surface-container transition-colors shadow-sm" title="Refresh Data">
+<span class="material-symbols-outlined text-sm">refresh</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-DEFAULT hover:bg-indigo-500 transition-colors shadow-sm ml-2 bg-[#4f46e5]">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="font-button text-button">Add Data Source</span>
+</button>
+</div>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-2">Connected Sources</span>
+<span class="font-display-kpi text-display-kpi text-primary">12</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-2">Healthy</span>
+<span class="font-display-kpi text-display-kpi text-white">10</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-2 flex items-center">Syncing <span class="material-symbols-outlined text-xs ml-1 animate-spin text-secondary-container">sync</span></span>
+<span class="font-display-kpi text-display-kpi text-white">2</span>
+</div>
+<div class="bg-surface-container-lowest border border-error rounded-lg p-4 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 w-12 h-12 bg-error opacity-10 rounded-bl-full"></div>
+<span class="font-label-mono text-label-mono text-error uppercase mb-2 flex items-center">Attention Required <span class="material-symbols-outlined text-xs ml-1">error</span></span>
+<span class="font-display-kpi text-display-kpi text-error">1</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm flex flex-col justify-between ai-top-border relative">
+<div class="absolute top-2 right-2 flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00D4FF]"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#00D4FF] opacity-50"></span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-2">Records Processed</span>
+<span class="font-display-kpi text-display-kpi text-white">42.8M</span>
+</div>
+</div>
+<!-- AI Insight Panel -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm ai-border flex items-start gap-4">
+<div class="bg-tertiary-container p-2 rounded-DEFAULT text-secondary-container shrink-0 mt-1">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] font-semibold text-white mb-1">AI Data Health</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">All critical intelligence sources are currently healthy. <strong class="text-white font-medium">Salesforce CRM</strong> contains a small increase in missing industry fields that may affect automated customer segmentation forecasts.</p>
+<div class="mt-2 flex gap-3">
+<button class="text-primary font-button text-[12px] hover:underline flex items-center gap-1">View Impact Analysis <span class="material-symbols-outlined text-[14px]">arrow_forward</span></button>
+<button class="text-on-surface-variant font-button text-[12px] hover:text-white transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Split Layout: Table and Detail Panel -->
+<div class="flex flex-col lg:flex-row gap-lg flex-1 min-h-[500px]">
+<!-- Main Table Left Panel -->
+<div class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto flex-1">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div><table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="border-b border-surface-container-highest bg-surface-container-low font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4 font-medium">Source</th>
+<th class="py-3 px-4 font-medium">Type</th>
+<th class="py-3 px-4 font-medium">Connection</th>
+<th class="py-3 px-4 font-medium">Last Sync</th>
+<th class="py-3 px-4 font-medium text-right">Records</th>
+<th class="py-3 px-4 font-medium">Status</th>
+<th class="py-3 px-4 font-medium w-8"></th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-white">
+<!-- Selected Row -->
+<tr class="border-b border-surface-container-highest bg-primary bg-opacity-10 table-row-hover cursor-pointer relative group">
+<td class="py-3 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant shrink-0">
+<img class="w-5 h-5 object-contain" data-alt="A stylized minimalist icon representing a cloud CRM software logo, rendered in flat blue tones on a clean white background, high contrast, sharp edges, suitable for an enterprise dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4SNd_bbOktkPNxa0si7dSm2KhZ9bUCzUhRotccl2DxaOslcucKMAu0YSEYzGVGA-zsXnpJmy5Eq7dYCSLpsgx9CHPNfY8_vCSENHv8DLfBwLuqoMLNM8VRaBR3RxVRUMwETj620eTCsx_Z1Jay_PB92uFwdV945HCC4rhsUaB1Dc_qkXVHB8bS7deVOK-4cmy1_2psuTlah0xlrRxRNhqeMXlqlvnumbklh6nknGmm2kbkVbkxyjl"/>
+</div>
+<div class="font-medium text-primary">Salesforce CRM</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">CRM</td>
+<td class="py-3 px-4"><span class="bg-surface-container-high px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">OAuth</span></td>
+<td class="py-3 px-4">12m ago</td>
+<td class="py-3 px-4 text-right font-mono">1.2M</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="text-[#10b981] font-medium text-[12px]">Connected</span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Standard Row -->
+<tr class="border-b border-surface-container-highest table-row-hover cursor-pointer group">
+<td class="py-3 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant shrink-0">
+<img class="w-5 h-5 object-contain" data-alt="A stylized minimalist icon representing a data warehouse or cloud storage, rendered in light blue and grey tones on a clean white background, high contrast, simple geometric shapes, suitable for an enterprise dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBShppt5Kv5-XyNtz-KabmTmZmuNQ9fSm4jRC2_Y9WsE3y_bqb8AKkaae3NrDFNxlMSiOPWjjtkUijEm03e2GKKLsobci0UGj-jYPQuzR-NeQCce6nxMnVfnXazxWUUyBn-B1CsUnKf0I7samV1QPp9QMqJic0gDz0T8Yp3F-_60lmudknGGz6z3DTaaIjgpoMHEo1_h8GLb5zltRskiz2XblxzowHE6nyuBr64XxAcPRCeG5QClFhj"/>
+</div>
+<div class="font-medium">Snowflake DW</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Data Warehouse</td>
+<td class="py-3 px-4"><span class="bg-surface-container-high px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">JDBC</span></td>
+<td class="py-3 px-4">4h ago</td>
+<td class="py-3 px-4 text-right font-mono">25.4M</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="text-[#10b981] font-medium text-[12px]">Connected</span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Syncing Row -->
+<tr class="border-b border-surface-container-highest table-row-hover cursor-pointer group bg-surface-container-lowest">
+<td class="py-3 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant shrink-0">
+<img class="w-5 h-5 object-contain" data-alt="A stylized minimalist icon representing a marketing automation software logo, rendered in orange tones on a clean white background, high contrast, sharp edges, suitable for an enterprise dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN8bu1rXUAcS6XfI_VFV4zUd4tWy42yyzGM3vPQfMZi-iNySw6pQdC7SfaiTN5N86o1PnTwQpNFwmTzHUBXxvwjyXFWCBZ5JSv6_UPJOkzj-wTZ5spu7u2yAI90-sheY_trILegu-1DupUT-juT13TRZmJ3z0401o50xt99_g4rMRdEybanxPqtdGsu0K0XRS-vQ01r-bGKz9h8ZXlkLQ3k1-OJDwNUlvChnwEQJpOKd2VImBuk3By"/>
+</div>
+<div class="font-medium">HubSpot</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Marketing</td>
+<td class="py-3 px-4"><span class="bg-surface-container-high px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">API Key</span></td>
+<td class="py-3 px-4 text-secondary-container">Syncing...</td>
+<td class="py-3 px-4 text-right font-mono">480k</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-container"></span>
+</span>
+<span class="text-secondary-container font-medium text-[12px]">Syncing</span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Warning Row -->
+<tr class="border-b border-surface-container-highest table-row-hover cursor-pointer group bg-error-container bg-opacity-10">
+<td class="py-3 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-error opacity-50 shrink-0">
+<span class="material-symbols-outlined text-[16px] text-error">database</span>
+</div>
+<div class="font-medium text-error">PostgreSQL Legacy</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Database</td>
+<td class="py-3 px-4"><span class="bg-surface-container-high px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">JDBC</span></td>
+<td class="py-3 px-4">2d ago</td>
+<td class="py-3 px-4 text-right font-mono">8.1M</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+<span class="text-[#f59e0b] font-medium text-[12px]">Needs Attention</span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Standard Row -->
+<tr class="table-row-hover cursor-pointer group">
+<td class="py-3 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant shrink-0">
+<img class="w-5 h-5 object-contain" data-alt="A stylized minimalist icon representing a payment gateway software logo, rendered in purple and blue tones on a clean white background, high contrast, simple shapes, suitable for an enterprise dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpJPaQbeTNKSLOTp0_UoayrcuqNGIqJNtUF02UFhtP1ucmpi242bOX1zQyW2dBu5cNpgrUMrzhwaurP4VsZ6i5qLo0IzV8Bah4UCq3CR5SKULjXU83GRRAKTXRs3_VM1_oxprVAE3gGeXpctAw1alOdy8BVdL0gdyt9pjoyoJ3LuvvpAPqHDAqURujH0_TmBWjDs-UjRK-2RKPfO2BMkCVbUw87nrsRPNDGkPi1Ty6Hy0cw0nKSxR5"/>
+</div>
+<div class="font-medium">Stripe Payments</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant">Payments</td>
+<td class="py-3 px-4"><span class="bg-surface-container-high px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">API Key</span></td>
+<td class="py-3 px-4">1h ago</td>
+<td class="py-3 px-4 text-right font-mono">3.4M</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="text-[#10b981] font-medium text-[12px]">Connected</span>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-on-surface-variant hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-surface-container-highest bg-surface-container-low flex justify-between items-center text-body-sm text-on-surface-variant">
+<span class="">Showing 1-5 of 12 sources</span>
+<div class="flex gap-2">
+<button class="px-2 py-1 rounded hover:bg-surface-container transition-colors disabled:opacity-50"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+<button class="px-2 py-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Right Detail Panel (Salesforce CRM) -->
+<div class="w-full lg:w-80 xl:w-96 shrink-0 flex flex-col gap-4"><div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm ai-border">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+<h3 class="font-headline-sm font-semibold text-white">Field Mapping</h3>
+</div>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-mono text-on-surface-variant uppercase">Canonical v2.1</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low border border-outline-variant border-opacity-30">
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant uppercase font-label-mono">Source: total_rev</span>
+<span class="text-sm text-white font-medium">Revenue</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low border border-outline-variant border-opacity-30">
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant uppercase font-label-mono">Source: cust_id</span>
+<span class="text-sm text-white font-medium">Customer</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low border border-[#f59e0b] border-opacity-30">
+<div class="flex flex-col">
+<span class="text-[11px] text-[#f59e0b] uppercase font-label-mono">Source: loc_region</span>
+<span class="text-sm text-white font-medium">Region</span>
+</div>
+<span class="material-symbols-outlined text-[#f59e0b] text-[20px]">warning</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low border border-outline-variant border-opacity-30 opacity-50">
+<div class="flex flex-col">
+<span class="text-[11px] text-on-surface-variant uppercase font-label-mono">Source: --</span>
+<span class="text-sm text-on-surface-variant font-medium">Product</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">radio_button_unchecked</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low border border-error border-opacity-30">
+<div class="flex flex-col">
+<span class="text-[11px] text-error uppercase font-label-mono">Source: order_dt</span>
+<span class="text-sm text-white font-medium">Date</span>
+</div>
+<span class="material-symbols-outlined text-error text-[20px]">error</span>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-container-highest">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs text-on-surface-variant">Validation Health</span>
+<span class="text-xs text-[#10b981] font-medium">84% Ready</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1 mb-4">
+<div class="bg-[#10b981] h-1 rounded-full" style="width: 84%"></div>
+</div>
+<button class="w-full py-2 bg-primary text-white rounded-DEFAULT font-button text-button hover:bg-indigo-500 transition-colors shadow-sm bg-[#4f46e5]">
+            Finalize Mapping
+        </button>
+</div>
+</div>
+<!-- Main Info Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<img class="w-8 h-8 object-contain" data-alt="A stylized minimalist icon representing a cloud CRM software logo, identical to the smaller version in the table but larger, rendered in flat blue tones on a clean white background, high contrast, sharp edges, suitable for an enterprise dashboard UI side panel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq7VkOCP0ihgkD4YIUuv0Ga7Ai4-j_e6a7VosHAP1LVHouGFOEOAMNkD0-Ja3HZRhkB1NHkyOU1RhL-J8FlqR6h-dw7HG1hYQekMMm2tcB_vYDLQ6nVCUjSj1v6nfQe7UirbTTpkxgedHYlVuUFR7aTaeqNhM-81tmahCETeNaqhWxIbP1YCGDjG9zk6P-On1PBjZD-Ey5OVrAL4sv92ofYd5jCTIdNl1GGcjAz7PJMhWxxf4er7Xm"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-white leading-tight">Salesforce CRM</h2>
+<span class="inline-flex items-center gap-1.5 mt-1 bg-[#10b981] bg-opacity-10 text-[#10b981] px-2 py-0.5 rounded text-[11px] font-mono border border-[#10b981] border-opacity-20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Connected
+                                </span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-white"><span class="material-symbols-outlined text-[20px]">more_horiz</span></button>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-2 text-body-sm mb-6">
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Last Sync</div>
+<div class="font-medium text-white">Today, 08:42 AM</div>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Total Records</div>
+<div class="font-medium text-white font-mono">1.24M</div>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Frequency</div>
+<div class="font-medium text-white">Every 15 mins</div>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Health</div>
+<div class="font-medium text-[#10b981]">Excellent (99.8%)</div>
+</div>
+</div>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-center gap-2 py-2 bg-primary bg-opacity-10 text-primary border border-primary border-opacity-30 rounded-DEFAULT font-button text-button hover:bg-opacity-20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">sync</span> Run Manual Sync
+                        </button>
+<div class="flex gap-2">
+<button class="flex-1 py-2 border border-outline-variant text-white rounded-DEFAULT font-button text-button hover:bg-surface-container transition-colors">Configure</button>
+<button class="flex-1 py-2 border border-outline-variant text-white rounded-DEFAULT font-button text-button hover:bg-surface-container transition-colors flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[16px]">visibility</span> View Data</button>
+</div>
+</div>
+</div>
+<!-- AI Quality Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm ai-border flex flex-col gap-4">
+<div class="flex items-center gap-2 text-secondary-container border-b border-surface-container-highest pb-3">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<h3 class="font-headline-sm font-semibold text-white">AI Data Quality</h3>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-body-sm mb-1">
+<span class="text-on-surface-variant">Overall Quality Score</span>
+<span class="font-mono text-white font-medium">98%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary-container h-1.5 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 text-[13px]">
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant border-opacity-50">
+<span class="block text-on-surface-variant mb-0.5">Schema Status</span>
+<span class="flex items-center gap-1 font-medium text-white"><span class="material-symbols-outlined text-[14px] text-[#10b981]">check_circle</span> Stable</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded border border-outline-variant border-opacity-50">
+<span class="block text-on-surface-variant mb-0.5">Data Freshness</span>
+<span class="flex items-center gap-1 font-medium text-white"><span class="material-symbols-outlined text-[14px] text-[#10b981]">check_circle</span> High</span>
+</div>
+</div>
+<div class="bg-surface-container p-3 rounded text-[13px] text-on-surface-variant border border-outline-variant border-opacity-30">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#f59e0b] mt-0.5">warning</span>
+<div class="">
+<strong class="text-white font-medium block">Missing Fields Detected</strong>
+                                    Minor increase (0.4%) in null values for 'Industry' column across Account records.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity List -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm">
+<h3 class="font-body-md font-semibold text-white mb-4">Recent Activity</h3>
+<div class="relative border-l border-surface-container-highest ml-2 space-y-4 pb-2">
+<div class="relative pl-5">
+<span class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-surface-container-lowest"></span>
+<div class="text-[13px] font-medium text-white">Scheduled sync completed</div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">12 mins ago • 142 records updated</div>
+</div>
+<div class="relative pl-5">
+<span class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-surface-container-highest border-2 border-surface-container-lowest"></span>
+<div class="text-[13px] font-medium text-white">Scheduled sync completed</div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">27 mins ago • 89 records updated</div>
+</div>
+<div class="relative pl-5">
+<span class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-secondary-container border-2 border-surface-container-lowest"></span>
+<div class="text-[13px] font-medium text-white">Schema mapping verified</div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">2 hours ago by AI Agent</div>
+</div>
+<div class="relative pl-5">
+<span class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-surface-container-highest border-2 border-surface-container-lowest"></span>
+<div class="text-[13px] font-medium text-white">OAuth token refreshed</div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">Yesterday, 14:30 PM</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var sources = await window.DB.getSourceConnections();
+    var totalSources = sources.length;
+    var healthy = sources.filter(function(s){return s.status==='connected';}).length;
+    var syncing = sources.filter(function(s){return s.status==='syncing';}).length;
+    var errors = sources.filter(function(s){return s.status==='error';}).length;
+    var totalRecords = sources.reduce(function(s,c){return s+(c.records_count||0);},0);
+    
+    // Update KPI cards
+    var kpis = document.querySelectorAll('.font-display-kpi');
+    if (kpis[0]) kpis[0].textContent = totalSources;
+    if (kpis[1]) kpis[1].textContent = healthy;
+    if (kpis[2]) kpis[2].textContent = syncing;
+    if (kpis[3]) kpis[3].textContent = errors;
+    if (kpis[4]) kpis[4].textContent = fmtN(totalRecords);
+    
+    // Update source table
+    var tbody = document.querySelector('tbody');
+    if (tbody) {
+      var html = '';
+      sources.forEach(function(s){
+        var statusColor = s.status==='connected'?'text-[#10b981]':s.status==='syncing'?'text-yellow-400':'text-red-400';
+        var statusDot = s.status==='connected'?'bg-[#10b981]':s.status==='syncing'?'bg-yellow-400':'bg-red-400';
+        html += '<tr class="border-b border-outline-variant hover:bg-surface/50 transition-colors">';
+        html += '<td class="px-4 py-3"><div class="flex items-center gap-3">';
+        html += '<span class="material-symbols-outlined text-primary">database</span>';
+        html += '<div><div class="font-semibold text-white">'+s.name+'</div>';
+        html += '<div class="text-xs text-gray-400">'+s.type+'</div></div></div></td>';
+        html += '<td class="px-4 py-3"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full '+statusDot+'"></span>';
+        html += '<span class="'+statusColor+' text-sm capitalize">'+s.status+'</span></div></td>';
+        html += '<td class="px-4 py-3 text-gray-300">'+fmtN(s.records_count||0)+'</td>';
+        html += '<td class="px-4 py-3 text-gray-400 text-sm">'+(s.last_sync_at?new Date(s.last_sync_at).toLocaleString():'Never')+'</td>';
+        html += '<td class="px-4 py-3 text-right"><button class="text-gray-400 hover:text-primary transition-colors p-1">';
+        html += '<span class="material-symbols-outlined text-sm">more_horiz</span></button></td></tr>';
+      });
+      tbody.innerHTML = html;
+    }
+    
+    function fmtN(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n.toLocaleString();}
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>

@@ -1,0 +1,115 @@
+<main class="flex-1 overflow-y-auto p-lg md:p-margin">
+<div class="max-w-[1440px] mx-auto space-y-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-white">Executive Overview</h2>
+<p class="font-body-md text-body-md text-gray-400 mt-1">Real-time performance and AI-driven predictions.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="h-9 px-3 flex items-center gap-2 rounded border border-border-light bg-surface text-white font-button text-button hover:bg-surface-raised transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-gray-400">calendar_today</span> YTD (Jan 1 - Oct 24)
+<span class="material-symbols-outlined text-[18px] text-gray-500">expand_more</span>
+</button>
+<button class="h-9 px-4 flex items-center gap-2 rounded bg-primary text-white font-button text-button hover:bg-primary-hover transition-colors shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+<span class="material-symbols-outlined text-[18px] text-white">smart_toy</span> Ask AI Analyst
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">Records</span><span class="material-symbols-outlined text-gray-500 text-[18px]">database</span></div>
+<div id="kpi-records" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-emerald-400">trending_up</span><span class="font-button text-button text-emerald-400" id="kpi-records-status">Loading</span></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">Forecast</span><span class="material-symbols-outlined text-gray-500 text-[18px]">payments</span></div>
+<div id="kpi-forecast" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-emerald-400">trending_up</span><span class="font-button text-button text-emerald-400" id="kpi-forecast-change">Loading</span></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">Confidence</span><span class="material-symbols-outlined text-gray-500 text-[18px]">verified</span></div>
+<div id="kpi-confidence" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-primary">check_circle</span><span class="font-button text-button text-primary" id="kpi-confidence-label">Loading</span></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">AI Insights</span><span class="material-symbols-outlined text-gray-500 text-[18px]">psychology</span></div>
+<div id="kpi-insights" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-ai-accent">auto_awesome</span><span class="font-button text-button text-ai-accent" id="kpi-insights-label">Loading</span></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">Actions</span><span class="material-symbols-outlined text-gray-500 text-[18px]">bolt</span></div>
+<div id="kpi-actions" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-amber-400">pending</span><span class="font-button text-button text-amber-400" id="kpi-actions-label">Loading</span></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-4 card-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2"><span class="font-label-mono text-label-mono text-gray-400 uppercase">Sources</span><span class="material-symbols-outlined text-gray-500 text-[18px]">hub</span></div>
+<div id="kpi-sources" class="font-display-kpi text-display-kpi text-white mb-2">&mdash;</div>
+<div class="flex items-center gap-1.5 mt-auto"><span class="material-symbols-outlined text-[16px] text-gray-400">link</span><span class="font-button text-button text-gray-400" id="kpi-sources-label">Loading</span></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+<div class="lg:col-span-8 bg-surface border border-border-light rounded-lg p-5 card-shadow min-h-[400px] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div><h3 class="font-headline-md text-[18px] text-white">Revenue Trends vs Forecast</h3><p class="font-body-sm text-gray-400 mt-0.5">Actuals vs AI-predicted future performance</p></div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-[2px] bg-primary"></div><span class="font-label-mono text-[10px] text-gray-400 uppercase">Actual</span></div>
+<div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-[2px] border-2 border-ai-accent bg-transparent border-dashed"></div><span class="font-label-mono text-[10px] text-gray-400 uppercase">AI Forecast</span></div>
+</div>
+</div>
+<div class="flex-1 w-full relative flex items-end pt-4 pb-8 pl-10 pr-4">
+<div class="absolute left-0 top-4 bottom-8 flex flex-col justify-between text-[11px] font-label-mono text-gray-500 items-end pr-2 w-10"><span>20M</span><span>15M</span><span>10M</span><span>5M</span></div>
+<div class="absolute inset-0 left-10 bottom-8 border-l border-b border-border-light"><div class="w-full h-1/4 border-t border-border-light/50"></div><div class="w-full h-1/4 border-t border-border-light/50"></div><div class="w-full h-1/4 border-t border-border-light/50"></div></div>
+<div class="absolute bottom-0 left-10 right-4 flex justify-between text-[11px] font-label-mono text-gray-500"><span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span class="text-primary font-bold">Sep (Now)</span><span>Nov</span><span>Dec</span></div>
+<svg class="absolute inset-0 left-10 bottom-8 w-[calc(100%-2.5rem)] h-[calc(100%-2rem)] overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100"><defs><linearGradient id="area-gradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#6366F1" stop-opacity="0.3"/><stop offset="100%" stop-color="#6366F1" stop-opacity="0"/></linearGradient></defs><path d="M0,100 L0,65 Q10,58 20,60 T40,48 T60,38 T75,28 L75,100 Z" fill="url(#area-gradient)"/><path d="M0,65 Q10,58 20,60 T40,48 T60,38 T75,28" fill="none" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" style="filter: drop-shadow(0 0 4px rgba(99,102,241,0.5))"/><path d="M75,28 Q85,18 100,12" fill="none" stroke="#8B5CF6" stroke-dasharray="4,4" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 4px rgba(139,92,246,0.5))"/><circle cx="75" cy="28" fill="#0B0E14" r="4" stroke="#6366F1" stroke-width="3"/><line stroke="#4B5563" stroke-dasharray="4,4" stroke-width="1.5" x1="75" x2="75" y1="28" y2="100"/></svg>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-4">
+<div class="flex-1 bg-ai-bg border border-ai-border rounded-lg p-5 card-shadow">
+<div class="flex items-center gap-2 mb-4"><span class="material-symbols-outlined text-ai-accent text-[22px]">psychology</span><h3 class="font-headline-md text-[16px] text-white">Critical AI Insights</h3></div>
+<ul id="ai-insights-list" class="space-y-4 font-body-sm text-gray-300"><li class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-surface-raised flex items-center justify-center shrink-0 border border-border-light mt-0.5"><span class="material-symbols-outlined text-ai-accent text-[14px]">hourglass_empty</span></div><span class="leading-relaxed text-gray-500">Loading insights...</span></li></ul>
+</div>
+<div class="flex-1 bg-surface border border-border-light rounded-lg p-5 card-shadow">
+<div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-amber-500 text-[22px]">warning</span><h3 class="font-headline-md text-[16px] text-white">Risk Monitor</h3></div><span id="risk-badge" class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-label-mono px-2 py-1 rounded uppercase tracking-wider">Loading</span></div>
+<div id="risk-list" class="space-y-3"><div class="p-3 rounded-md bg-surface-raised border border-border-light"><p class="font-body-sm text-gray-500">Loading threats...</p></div></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<div class="bg-surface border border-border-light rounded-lg p-5 card-shadow">
+<h3 class="font-headline-md text-[16px] text-white mb-1">Data Sources</h3>
+<p class="font-body-sm text-gray-400 mb-6">Connected enterprise data systems</p>
+<div id="sources-list" class="space-y-5"><div class="text-gray-500 text-body-sm">Loading sources...</div></div>
+</div>
+<div class="bg-surface border border-border-light rounded-lg p-5 card-shadow">
+<div class="flex items-center justify-between mb-5"><div><h3 class="font-headline-md text-[16px] text-white">Recommended Actions</h3><p class="font-body-sm text-gray-400 mt-0.5">AI-generated next steps based on current data.</p></div><span class="material-symbols-outlined text-primary text-[22px]">bolt</span></div>
+<div id="actions-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="text-gray-500 text-body-sm">Loading actions...</div></div>
+</div>
+</div>
+</div>
+<div class="h-xl"></div>
+<script>
+(async function(){
+var w=function(){return new Promise(function(r){if(window.AppState&&window.AppState.profile)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile){clearInterval(c);r();}},100);});};
+await w();await new Promise(function(r){setTimeout(r,200);});
+try{
+var S=await window.DB.getSourceConnections(),F=await window.DB.getForecasts(),I=await window.DB.getInsights(),A=await window.DB.getActions();
+var tr=S.reduce(function(s,x){return s+parseInt(x.records_count||0);},0);
+var e=document.getElementById('kpi-records');if(e){e.innerHTML=(tr/1e6).toFixed(1)+'M';document.getElementById('kpi-records-status').textContent=S.length+' sources';}
+var bf=F.find(function(f){return f.forecast_value===18600000;});
+var e2=document.getElementById('kpi-forecast');if(e2&&bf){e2.innerHTML='$'+(bf.forecast_value/1e6).toFixed(1)+'M';document.getElementById('kpi-forecast-change').textContent=bf.period||'Q3 2026';}
+var e3=document.getElementById('kpi-confidence');if(e3&&bf){e3.innerHTML=bf.confidence+'<span class="text-xl text-gray-500 font-medium">%</span>';document.getElementById('kpi-confidence-label').textContent='Base forecast';}
+var ai=I.filter(function(i){return i.status==='active';});
+var e4=document.getElementById('kpi-insights');if(e4){e4.innerHTML=ai.length;var cc=ai.filter(function(i){return i.severity==='critical'||i.severity==='high';}).length;document.getElementById('kpi-insights-label').textContent=cc+' critical/high';}
+var aa=A.filter(function(a){return a.status!=='completed'&&a.status!=='cancelled';});
+var e5=document.getElementById('kpi-actions');if(e5){e5.innerHTML=aa.length;var ip=A.filter(function(a){return a.status==='in_progress';}).length;document.getElementById('kpi-actions-label').textContent=ip+' in progress';}
+var e6=document.getElementById('kpi-sources');if(e6){e6.innerHTML=S.length;var cn=S.filter(function(s){return s.status==='connected';}).length;document.getElementById('kpi-sources-label').textContent=cn+' connected';}
+var il=document.getElementById('ai-insights-list');if(il&&ai.length>0){var ic={anomaly:'warning',opportunity:'trending_up',risk:'error',revenue:'payments',customer:'groups',product:'inventory_2'};il.innerHTML=ai.slice(0,3).map(function(i){return '<li class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-surface-raised flex items-center justify-center shrink-0 border border-border-light mt-0.5"><span class="material-symbols-outlined text-ai-accent text-[14px]">'+(ic[i.type]||'psychology')+'</span></div><div class="leading-relaxed"><span class="text-white font-medium">'+i.title+'</span> <span class="text-gray-500 text-xs">('+i.confidence+'%)</span></div></li>';}).join('');}
+var rk=I.filter(function(i){return i.severity==='critical'||i.severity==='high';});
+var rb=document.getElementById('risk-badge');if(rb)rb.textContent=rk.length+' Active';
+var rl=document.getElementById('risk-list');if(rl&&rk.length>0){rl.innerHTML=rk.map(function(r){var d=r.explanation?r.explanation.substring(0,120)+'...':'No details available.';return '<div class="p-3 rounded-md bg-amber-500/10 border border-amber-500/20"><p class="font-body-sm text-amber-200/90 leading-relaxed">'+r.title+': '+d+'</p><div class="mt-3 flex items-center gap-2 text-[11px] font-label-mono text-amber-500/80 uppercase"><span class="material-symbols-outlined text-[14px]">smart_toy</span> AI Detected \u2022 '+r.severity+' severity</div></div>';}).join('');}else if(rl){rl.innerHTML='<div class="p-3 rounded-md bg-emerald-500/10 border border-emerald-500/20"><p class="font-body-sm text-emerald-300">No critical risks detected.</p></div>';}
+var sl=document.getElementById('sources-list');if(sl&&S.length>0){var sc={connected:'emerald-400',syncing:'amber-400',error:'red-400',disconnected:'gray-500'};sl.innerHTML=S.map(function(s){var c=sc[s.status]||'gray-500';var rc=s.records_count>=1e6?(s.records_count/1e6).toFixed(1)+'M':s.records_count.toLocaleString();var bw=s.status==='connected'?'100%':s.status==='syncing'?'60%':'30%';return '<div><div class="flex justify-between font-body-sm text-gray-300 mb-1.5"><span class="font-medium">'+s.name+'</span><span class="font-label-mono text-[13px]">'+rc+' records</span></div><div class="w-full bg-surface-raised rounded-full h-1.5"><div class="bg-primary h-1.5 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.5)]" style="width:'+bw+'"></div></div><div class="flex items-center gap-1.5 mt-1"><span class="w-1.5 h-1.5 rounded-full bg-'+c+'"></span><span class="text-[10px] font-label-mono text-gray-500 uppercase">'+s.status+' \u2022 '+s.type+'</span></div></div>';}).join('');}
+var al=document.getElementById('actions-list');if(al&&aa.length>0){al.innerHTML=aa.slice(0,4).map(function(a){var ic=a.priority==='critical'?'priority_high':'bolt';var bc=a.priority==='critical'?'bg-red-500/20 text-red-400':a.priority==='high'?'bg-amber-500/20 text-amber-400':'bg-primary/20 text-primary';var d=(a.description||'').substring(0,100);if(a.description&&a.description.length>100)d+='...';return '<div class="border border-border-light rounded-md p-4 hover:border-ai-border hover:shadow-[0_0_15px_rgba(139,92,246,0.1)] transition-all cursor-pointer group bg-surface-raised/50"><div class="flex items-start gap-3 mb-3"><div class="w-8 h-8 rounded-md bg-surface border border-border-light flex items-center justify-center shrink-0 text-primary group-hover:text-ai-accent transition-colors"><span class="material-symbols-outlined text-[18px]">'+ic+'</span></div><h4 class="font-button text-[14px] text-white mt-1">'+a.title+'</h4></div><p class="font-body-sm text-[13px] text-gray-400 mb-4 leading-relaxed">'+d+'</p><div class="flex items-center justify-between"><span class="text-[11px] font-label-mono px-2 py-0.5 rounded uppercase '+bc+'">'+a.priority+'</span><span class="text-[11px] font-label-mono text-gray-500">'+a.status.replace(/_/g,' ')+'</span></div></div>';}).join('');}
+}catch(err){console.error('Overview load error:',err);}
+})();
+</script>
+</main>

@@ -1,0 +1,345 @@
+<main class="flex-1 ml-64 min-h-screen flex flex-col bg-[#0F1115]">
+<!-- TopAppBar -->
+<header class="bg-[#0F1115] flex justify-between items-center h-16 px-lg border-b border-[#1F2937] sticky top-0 z-30">
+<div class="flex-1 flex items-center gap-md">
+<div class="relative w-64 max-w-sm hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-[#1A1D24] border border-[#1F2937] rounded-full font-body-sm text-body-sm text-white focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all" placeholder="Search insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-gray-400 hover:text-white transition-colors p-sm rounded-full hover:bg-[#1A1D24]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-gray-400 hover:text-white transition-colors p-sm rounded-full hover:bg-[#1A1D24]">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-[#a855f7] text-white flex items-center justify-center font-button font-bold ml-sm cursor-pointer hover:opacity-90 transition-opacity">
+                    JS
+                </div>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-lg md:p-xl max-w-[1440px] mx-auto w-full overflow-y-auto">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-white mb-xs">AI Insights</h1>
+<p class="font-body-md text-body-md text-gray-400">Automated intelligence and anomaly discovery.</p>
+<div class="flex flex-wrap gap-sm mt-md">
+<button class="px-md py-1 bg-[#a855f7] text-white rounded-full font-button text-button shadow-sm">All</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Critical</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Opportunities</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Risks</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Revenue</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Customers</button>
+<button class="px-md py-1 bg-[#1A1D24] border border-[#1F2937] text-gray-300 rounded-full font-button text-button hover:bg-[#111114] hover:text-white transition-colors">Products</button>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-xl">
+<!-- Card 1 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md flex flex-col justify-between hover:border-gray-500 transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Total Active Insights</span>
+<span class="material-symbols-outlined text-gray-400 text-lg">psychology</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-kpi text-display-kpi text-white" id="ai-total">—</span>
+<span class="font-body-sm text-body-sm text-[#00D4FF] mb-1 flex items-center"><span class="material-symbols-outlined text-[16px]">arrow_upward</span>3</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md flex flex-col justify-between border-l-[3px] border-l-red-500 hover:border-gray-500 transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Critical Priority</span>
+<span class="material-symbols-outlined text-red-500 text-lg">warning</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-kpi text-display-kpi text-white">4</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md flex flex-col justify-between hover:border-gray-500 transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Net Opportunities</span>
+<span class="material-symbols-outlined text-[#a855f7] text-lg">trending_up</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-kpi text-display-kpi text-white" id="ai-opportunities">—</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md flex flex-col justify-between hover:border-gray-500 transition-colors">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Detected Risks</span>
+<span class="material-symbols-outlined text-red-500 text-lg">error</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-kpi text-display-kpi text-white" id="ai-risks">—</span>
+<span class="font-body-sm text-body-sm text-gray-400 mb-1">(2 urgent)</span>
+</div>
+</div>
+</div>
+<!-- Main Content Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Left Panel: Priority Feed -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md text-white mb-sm text-[36px]">Priority Feed</h2>
+<!-- Insight Card 1 (Active) -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-lg cursor-pointer relative overflow-hidden shadow-sm transition-all hover:border-gray-500">
+<div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#a855f7]/50 to-[#7e22ce]/50"></div>
+<div class="flex justify-between items-start mb-sm mt-1">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-red-500/20 text-red-400 font-label-mono text-label-mono border border-red-500/30">
+<span class="material-symbols-outlined text-[14px]">warning</span> High
+                            </span>
+<span class="font-label-mono text-label-mono text-gray-400">94% Confidence</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">Revenue Anomaly: South Region</h3>
+<p class="font-body-sm text-body-sm text-gray-400 mb-md">Category: Revenue</p>
+<div class="flex justify-between items-end border-t border-[#1F2937] pt-sm">
+<div>
+<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Impact</span>
+<span class="font-body-lg text-body-lg font-bold text-red-400">-$450k</span>
+</div>
+<span class="material-symbols-outlined text-[#a855f7]">arrow_forward</span>
+</div>
+</div>
+<!-- Insight Card 2 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md cursor-pointer hover:border-gray-500 transition-all">
+<div class="flex justify-between items-start mb-sm">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#00D4FF]/20 text-[#00D4FF] font-label-mono text-label-mono border border-[#00D4FF]/30">
+<span class="material-symbols-outlined text-[14px]">lightbulb</span> Med
+                            </span>
+<span class="font-label-mono text-label-mono text-gray-400">88% Confidence</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">Product B Cross-sell Opportunity</h3>
+<p class="font-body-sm text-body-sm text-gray-400 mb-md">Category: Growth</p>
+<div class="flex justify-between items-end border-t border-[#1F2937] pt-sm">
+<div>
+<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Impact</span>
+<span class="font-body-lg text-body-lg font-bold text-[#a855f7]">+$280k</span>
+</div>
+</div>
+</div>
+<!-- Insight Card 3 -->
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-md cursor-pointer hover:border-gray-500 transition-all">
+<div class="flex justify-between items-start mb-sm">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-red-500/20 text-red-400 font-label-mono text-label-mono border border-red-500/30">
+<span class="material-symbols-outlined text-[14px]">warning</span> High
+                            </span>
+<span class="font-label-mono text-label-mono text-gray-400">91% Confidence</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">Customer Churn Alert: Enterprise Tier</h3>
+<p class="font-body-sm text-body-sm text-gray-400 mb-md">Category: Customers</p>
+<div class="flex justify-between items-end border-t border-[#1F2937] pt-sm">
+<div>
+<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Impact</span>
+<span class="font-body-lg text-body-lg font-bold text-red-400">-12 accounts</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Insight Detail -->
+<div class="lg:col-span-8">
+<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl h-full flex flex-col relative overflow-hidden">
+<!-- AI Header Glow -->
+<div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#a855f7]/50 to-[#7e22ce]/50"></div>
+<div class="p-lg border-b border-[#1F2937]">
+<div class="flex items-center gap-2 mb-sm">
+<span class="material-symbols-outlined text-[#a855f7]">auto_awesome</span>
+<span class="font-label-mono text-label-mono text-gray-400 uppercase tracking-wider">AI Insight Detail</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-white mb-xs text-[36px]">Revenue Anomaly: South Region</h2>
+<p class="font-body-md text-body-md text-gray-400">Detected today at 08:14 AM UTC</p>
+</div>
+<div class="p-xl flex-1 overflow-y-auto space-y-xl">
+<!-- What Happened -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-headline-md-mobile text-headline-md-mobile text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-500">database</span> Data Origin
+        </h3>
+<div class="group relative">
+<div class="flex items-center gap-2 px-3 py-1 bg-[#1A1D24] border border-[#a855f7]/30 rounded-full cursor-help transition-all hover:border-[#a855f7]">
+<span class="material-symbols-outlined text-[#a855f7] text-[16px]">verified</span>
+<span class="font-label-mono text-label-mono text-[#a855f7]">Traceability Active</span>
+</div>
+<div class="absolute right-0 top-full mt-2 w-64 p-md bg-[#1A1D24] border border-[#1F2937] rounded-xl shadow-xl hidden group-hover:block z-50">
+<p class="font-label-mono text-[10px] text-gray-500 uppercase mb-2">Intelligence Path</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-gray-400">cloud</span>
+<span class="text-body-sm text-xs text-gray-300">Salesforce (Source)</span>
+</div>
+<div class="ml-2 border-l border-[#1F2937] pl-3 py-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-xs text-gray-400">map</span>
+<span class="text-body-sm text-xs text-gray-300">South Region Mapping</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-xs text-gray-400">analytics</span>
+<span class="text-body-sm text-xs text-gray-300">Revenue Analytics</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-[#a855f7]">auto_awesome</span>
+<span class="text-body-sm text-xs text-white font-semibold">AI Insight</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm">
+<div class="flex items-center gap-2 px-3 py-2 bg-[#0F1115] border border-[#1F2937] rounded-lg">
+<span class="material-symbols-outlined text-gray-500 text-sm">link</span>
+<span class="font-body-sm text-body-sm text-gray-400">Source:</span>
+<span class="font-body-sm text-body-sm text-white font-semibold">Salesforce CRM</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-[#0F1115] border border-[#1F2937] rounded-lg">
+<span class="material-symbols-outlined text-gray-500 text-sm">location_on</span>
+<span class="font-body-sm text-body-sm text-gray-400">Mapping:</span>
+<span class="font-body-sm text-body-sm text-white font-semibold">South Region Data Hub</span>
+</div>
+</div>
+</section><section>
+<h3 class="font-headline-md-mobile text-headline-md-mobile text-white mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-500">info</span> What Happened
+                                </h3>
+<p class="font-body-md text-body-md text-gray-300 leading-relaxed">
+                                    A sudden deceleration in revenue growth was detected in the South Region over the past 7 days. Expected revenue based on historical seasonal trends was $1.2M, but actual recognized revenue fell to $750k, creating an unexpected negative variance of $450k.
+                                </p>
+</section>
+<!-- Visual Evidence -->
+<section>
+<h3 class="font-headline-md-mobile text-headline-md-mobile text-white mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-500">monitoring</span> Visual Evidence
+                                </h3>
+<div class="bg-[#0F1115] rounded-lg p-md border border-[#1F2937] flex items-center justify-center h-48 relative overflow-hidden">
+<!-- Dark Grid Background -->
+<div class="absolute inset-0 border-t border-[#1F2937]/50 flex flex-col justify-between pointer-events-none mt-4 mb-4">
+<div class="w-full h-px bg-[#1F2937]/50"></div>
+<div class="w-full h-px bg-[#1F2937]/50"></div>
+<div class="w-full h-px bg-[#1F2937]/50"></div>
+<div class="w-full h-px bg-[#1F2937]/50"></div>
+</div>
+<div class="w-full max-w-md flex items-end justify-between h-32 px-sm z-10 relative">
+<div class="w-1/12 bg-[#1F2937] rounded-t-sm h-full"></div>
+<div class="w-1/12 bg-[#1F2937] rounded-t-sm h-[90%]"></div>
+<div class="w-1/12 bg-[#1F2937] rounded-t-sm h-[95%]"></div>
+<div class="w-1/12 bg-[#1F2937] rounded-t-sm h-[85%]"></div>
+<div class="w-1/12 bg-[#1F2937] rounded-t-sm h-[105%] relative">
+<!-- Trendline representation -->
+<svg class="absolute top-0 left-1/2 w-48 h-12 -translate-x-1/2 -translate-y-full overflow-visible pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0,20 Q25,10 50,25 T100,5" fill="none" stroke="#a855f7" stroke-dasharray="4 2" stroke-width="2"></path>
+</svg>
+</div>
+<div class="w-1/12 bg-red-500 rounded-t-sm h-[40%] shadow-[0_0_10px_rgba(239,68,68,0.3)] relative group cursor-pointer">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#2d3133] text-white text-xs px-2 py-1 rounded hidden group-hover:block whitespace-nowrap border border-[#1F2937]">-$450k Drop</div>
+</div>
+<div class="w-1/12 bg-red-500 rounded-t-sm h-[35%] opacity-80"></div>
+</div>
+<div class="absolute bottom-2 right-4 text-xs text-gray-500 font-label-mono">Simulated Demo Data</div>
+</div>
+</section>
+<!-- Why It Happened -->
+<section>
+<h3 class="font-headline-md-mobile text-headline-md-mobile text-white mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-500">analytics</span> Why It Happened
+                                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-[#0F1115] rounded-lg p-md border border-[#1F2937]">
+<h4 class="font-label-mono text-label-mono text-gray-400 uppercase mb-sm">Observed Data (Facts)</h4>
+<ul class="list-disc list-inside font-body-sm text-body-sm text-gray-300 space-y-1">
+<li class="">32% drop in top-of-funnel leads in South Region.</li>
+<li class="">Conversion rate from Demo to Close remained stable (22%).</li>
+<li class="">Ad spend in South Region depleted 5 days earlier than projected.</li>
+</ul>
+</div>
+<div class="bg-[#0F1115] border-l-[3px] border-l-[#a855f7] rounded-lg p-md border border-[#1F2937] shadow-sm relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-[#a855f7]/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute top-2 right-2"><span class="material-symbols-outlined text-[#a855f7] text-sm">auto_awesome</span></div>
+<h4 class="font-label-mono text-label-mono text-gray-400 uppercase mb-sm">AI Interpretation</h4>
+<p class="font-body-sm text-body-sm text-gray-300 leading-relaxed">
+                                            The primary driver of the revenue gap is a critical shortfall in top-of-funnel pipeline generation. The early depletion of the regional ad budget suggests increased CPCs, likely driven by a recent aggressive regional campaign by Competitor X. The stable conversion rate indicates product-market fit remains strong, isolating the issue to acquisition volume.
+                                        </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Footer -->
+<div class="p-md bg-[#0F1115] border-t border-[#1F2937] flex flex-col sm:flex-row justify-between items-center gap-md">
+<div>
+<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Recommended Action</span>
+<span class="font-body-md text-body-md font-semibold text-white">Increase ad spend in South Region ($50k)</span>
+</div>
+<div class="flex items-center gap-md w-full sm:w-auto">
+<div class="text-right hidden sm:block">
+<span class="font-label-mono text-label-mono text-gray-400 block">Owner</span>
+<span class="font-body-sm text-body-sm text-gray-300">Marketing</span>
+</div>
+<a class="w-full sm:w-auto px-lg py-2 bg-[#a855f7] text-white rounded font-button text-button shadow-sm hover:bg-[#9333ea] transition-colors flex items-center justify-center gap-2 hover:bg-[#a855f7]" href="#actions">
+                                    Create Action <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-xl text-center">
+<p class="font-label-mono text-label-mono text-gray-500">Simulated Demo Data</p>
+</div>
+</div>
+</main>
+<script>
+(function(){
+  function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
+  waitForDB().then(async function(){
+    try{
+      
+    var insights = await window.DB.getInsights();
+    
+    // Update KPI cards
+    var total = insights.length;
+    var critical = insights.filter(function(i){return i.severity==='high';}).length;
+    var risks = insights.filter(function(i){return i.type==='risk'||i.type==='anomaly';}).length;
+    var opps = insights.filter(function(i){return i.type==='opportunity';});
+    var oppVal = opps.reduce(function(s,i){return s+(i.supporting_metrics&&i.supporting_metrics.expected_impact||0);},0);
+    
+    document.getElementById('ai-total').textContent = total;
+    document.getElementById('ai-critical').textContent = critical;
+    document.getElementById('ai-opportunities').textContent = fmt$(oppVal);
+    document.getElementById('ai-risks').textContent = risks;
+    
+    // Update Priority Feed cards
+    var feed = document.querySelector('.lg\.col-span-4');
+    if (feed) {
+      var html = '<h2 class="font-headline-md text-headline-md text-white mb-sm text-[36px]">Priority Feed</h2>';
+      insights.forEach(function(ins){
+        var sevColor = ins.severity==='high'?'red-500':'[#00D4FF]';
+        var sevLabel = ins.severity==='high'?'High':'Med';
+        var impact = ins.supporting_metrics&&ins.supporting_metrics.expected_impact ? fmt$(ins.supporting_metrics.expected_impact) : '—';
+        var impactColor = (ins.supporting_metrics&&ins.supporting_metrics.expected_impact<0)?'red-400':'[#a855f7]';
+        html += '<div class="bg-[#1A1D24] border border-[#1F2937] rounded-xl p-lg cursor-pointer relative overflow-hidden shadow-sm transition-all hover:border-gray-500" data-insight-id="'+ins.id+'">';
+        html += '<div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-[#a855f7]/50 to-[#7e22ce]/50"></div>';
+        html += '<div class="flex justify-between items-start mb-sm mt-1">';
+        html += '<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-'+sevColor+'/20 text-'+sevColor+' font-label-mono text-label-mono border border-'+sevColor+'/30">';
+        html += '<span class="material-symbols-outlined text-[14px]">'+(ins.severity==='high'?'warning':'lightbulb')+'</span> '+sevLabel+'</span>';
+        html += '<span class="font-label-mono text-label-mono text-gray-400">'+ins.confidence+'% Confidence</span></div>';
+        html += '<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">'+ins.title+'</h3>';
+        html += '<p class="font-body-sm text-body-sm text-gray-400 mb-md">Type: '+ins.type.charAt(0).toUpperCase()+ins.type.slice(1)+'</p>';
+        html += '<div class="flex justify-between items-end border-t border-[#1F2937] pt-sm"><div>';
+        html += '<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Impact</span>';
+        html += '<span class="font-body-lg text-body-lg font-bold text-'+impactColor+'">'+impact+'</span></div></div></div>';
+      });
+      // Keep the detail panel, clear and rebuild feed
+      var detailPanel = feed.querySelector('.lg\\:col-span-8') || feed.querySelector('[class*="col-span-8"]');
+      feed.innerHTML = html;
+      if (detailPanel) feed.appendChild(detailPanel);
+    }
+    
+    function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+Math.abs(n/1e3).toFixed(0)+'K';return'$'+Math.abs(n);}
+  
+    }catch(e){console.error('Module init error:',e);}
+  });
+})();
+</script>
