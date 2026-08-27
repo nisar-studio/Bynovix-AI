@@ -107,6 +107,16 @@ curl -X POST https://ddsjxafkhxijypgsbvcu.supabase.co/functions/v1/sync-data-sou
 - **5 Audit Events** including Brute Force Protection threat
 - **2 Organizations** with isolated data (Bynovix AI, Acme Corp)
 
+## Production URL
+
+**https://bynovix-ai.netlify.app**
+
+| Property | Value |
+|----------|-------|
+| Platform | Netlify (Free Tier) |
+| Hosting URL | https://bynovix-ai.netlify.app |
+| Admin Panel | https://app.netlify.com/projects/bynovix-ai |
+
 ## Running Locally
 
 ```bash

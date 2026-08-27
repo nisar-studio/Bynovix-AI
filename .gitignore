@@ -4,4 +4,5 @@ node_modules/
 Thumbs.db
 supabase/.temp/
 supabase/.env
-supabase/.temp
+.netlify/
+deploy/
