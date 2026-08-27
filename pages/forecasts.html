@@ -206,7 +206,7 @@
       document.getElementById('f-projected').textContent = fmt$(base.forecast_value);
       document.getElementById('f-confidence').textContent = base.confidence + '%';
       // Update drivers and risks from base forecast
-      var driverEl = document.querySelector('.pl-4.border-l-2.border-\\[#1F2937\\]');
+      var driverEl = document.querySelector('.pl-4.border-l-2');
       if (base.drivers && base.drivers.length) {
         var dHtml = '<h4 class="font-label-mono text-label-mono text-outline-variant uppercase tracking-wider mb-2">Driver Analysis</h4>';
         dHtml += '<p class="font-body-sm text-body-sm text-on-surface-variant text-gray-300">';

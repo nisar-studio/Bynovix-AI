@@ -98,20 +98,20 @@ serve(async (req: Request) => {
       });
     }
 
-    // 5. Log audit event
+    // 5. Log audit event (matches schema: event_type, module, severity, status, change_payload, context)
     await supabase.from("audit_events").insert({
       organization_id: source.organization_id,
       event_type: "data_source_synced",
-      title: `${source.name} synced`,
-      severity: "low",
-      user_id: user_id || null,
       module: "Data Sources",
-      metadata: {
+      severity: "low",
+      status: "successful",
+      change_payload: {
         source_name: source.name,
         records_synced: delta,
         new_total: newCount,
         quality_score: Math.round(qualityScore * 10) / 10,
       },
+      context: { synced_by: user_id || "system" },
     });
 
     return new Response(

@@ -306,7 +306,6 @@
     var oppVal = opps.reduce(function(s,i){return s+(i.supporting_metrics&&i.supporting_metrics.expected_impact||0);},0);
     
     document.getElementById('ai-total').textContent = total;
-    document.getElementById('ai-critical').textContent = critical;
     document.getElementById('ai-opportunities').textContent = fmt$(oppVal);
     document.getElementById('ai-risks').textContent = risks;
     

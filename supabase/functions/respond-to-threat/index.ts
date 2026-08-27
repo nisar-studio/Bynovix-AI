@@ -222,14 +222,14 @@ serve(async (req: Request) => {
       }
     }
 
-    // 10. Log audit event for the response
+    // 10. Log audit event for the response (matches schema)
     await supabase.from("audit_events").insert({
       organization_id: org_id,
       event_type: "threat_response_executed",
-      title: `Threat response: ${results.length} playbook(s) matched`,
-      severity: "medium",
       module: "Security",
-      metadata: {
+      severity: "medium",
+      status: "successful",
+      change_payload: {
         source_event_id: audit_event_id,
         playbooks_matched: matchingPlaybooks.length,
         results,

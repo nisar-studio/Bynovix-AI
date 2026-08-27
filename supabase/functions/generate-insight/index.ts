@@ -148,14 +148,14 @@ serve(async (req: Request) => {
       });
     }
 
-    // 7. Log audit event
+    // 7. Log audit event (matches schema: event_type, module, severity, status, change_payload, context)
     await supabase.from("audit_events").insert({
       organization_id: input.org_id,
       event_type: "insight_generated",
-      title: `AI Insight created: ${insight.title}`,
-      severity: insight.severity === "critical" ? "high" : "low",
       module: "AI Insights",
-      metadata: {
+      severity: insight.severity === "critical" ? "high" : "low",
+      status: "successful",
+      change_payload: {
         insight_id: insight.id,
         confidence,
         confidence_gate: confidenceGate,

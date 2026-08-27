@@ -236,7 +236,7 @@
     if (scenario && scenario.variables) {
       var vars = scenario.variables;
       var labels = document.querySelectorAll('label.font-body-sm');
-      var spans = document.querySelectorAll('span.font-label-mono.text-error, span.font-label-mono.text-\\[#00d4ff\\]');
+      var spans = document.querySelectorAll('span.font-label-mono');
     }
     
     function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+n.toLocaleString();}

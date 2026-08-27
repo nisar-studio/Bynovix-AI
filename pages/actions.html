@@ -320,6 +320,11 @@
     if (kpis[3]) kpis[3].textContent = completed;
     if (kpis[4]) kpis[4].textContent = fmt$(totalImpact);
     
+    // Load insights for cross-module lineage linking
+    var insights = await window.DB.getInsights();
+    var insightMap = {};
+    insights.forEach(function(i){ insightMap[i.id] = i; });
+    
     // Rebuild action table rows
     var tbody = document.querySelector('tbody');
     if (tbody) {
@@ -351,11 +356,6 @@
       });
       tbody.innerHTML = html;
     }
-    
-    // Load insights for cross-module lineage linking
-    var insights = await window.DB.getInsights();
-    var insightMap = {};
-    insights.forEach(function(i){ insightMap[i.id] = i; });
     
     // Update detail panel with first in-progress action + linked insight
     var activeAction = actions.find(function(a){return a.status==='in_progress';}) || actions[0];
