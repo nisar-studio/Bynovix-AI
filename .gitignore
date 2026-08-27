@@ -6,3 +6,4 @@ supabase/.temp/
 supabase/.env
 .netlify/
 deploy/
+deploy/
