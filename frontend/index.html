@@ -142,7 +142,7 @@
 <div id="app-shell" style="visibility:hidden; display:flex;">
 
 <!-- ========== SIDEBAR ========== -->
-<nav id="sidebar" class="flex flex-col h-screen left-0 w-64 border-r border-[#1f1f22] bg-[#0a0a0c] py-md overflow-y-auto overflow-x-hidden flex-shrink-0 z-50">
+<nav id="sidebar" class="flex flex-col h-screen left-0 w-64 border-r border-[#1f1f22] bg-[#0a0a0c] py-md overflow-y-auto overflow-x-hidden flex-shrink-0 z-50 relative">
   <!-- Brand -->
   <div class="px-md pb-lg mb-sm">
     <div class="flex items-center gap-sm">
@@ -329,23 +329,34 @@ window.AppState = {
 
   async function loadUserProfile(user) {
     window.AppState.user = user;
-    const { data: profile } = await window._sb.from('profiles').select('*').eq('id', user.id).single();
-    window.AppState.profile = profile;
-    if (profile?.organization_id) {
-      const { data: policies } = await window._sb.from('org_policies').select('*').eq('organization_id', profile.organization_id).single();
-      window.AppState.policies = policies;
+    // Load profile with 3-second timeout to prevent hanging
+    try {
+      const profilePromise = window._sb.from('profiles').select('*').eq('id', user.id).single();
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('profile timeout')), 3000));
+      const { data: profile } = await Promise.race([profilePromise, timeoutPromise]);
+      window.AppState.profile = profile;
+      if (profile?.organization_id) {
+        const { data: policies } = await window._sb.from('org_policies').select('*').eq('organization_id', profile.organization_id).single();
+        window.AppState.policies = policies;
+      }
+    } catch (e) {
+      console.warn('[Auth] Profile load failed or timed out, using fallback:', e.message);
+      window.AppState.profile = null;
     }
   }
 
   function showApp() {
     const profile = window.AppState.profile;
+    const user = window.AppState.user;
     loginScreen.style.display = 'none';
     appShell.style.visibility = 'visible';
     logoutBtn.style.display = 'flex';
-    // Set avatar initials
+    // Set avatar initials from profile or user metadata
     if (profile?.full_name) {
       const parts = profile.full_name.split(' ');
       userAvatar.textContent = parts.map(p => p[0]).join('').toUpperCase().substring(0, 2);
+    } else if (user?.email) {
+      userAvatar.textContent = user.email.substring(0, 2).toUpperCase();
     }
     // Trigger initial page load
     window.dispatchEvent(new HashChangeEvent('hashchange'));
@@ -356,6 +367,11 @@ window.AppState = {
 window.escHtml = function(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+};
+
+// ========== ORG HELPER (with fallback) ==========
+window.getOrgId = function() {
+  return window.AppState.profile?.organization_id || 'a0000000-0000-0000-0000-000000000001';
 };
 
 // ========== SUPABASE DATA HELPERS ==========
