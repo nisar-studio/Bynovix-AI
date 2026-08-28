@@ -196,8 +196,10 @@ npx http-server . -p 8080 -c-1
 | Email | Password | Role |
 |-------|----------|------|
 | sarah.lee@bynovix.com | BynovixAdmin@1 | Admin |
-| john.doe@bynovix.com | BynovixAdmin@1 | Manager |
-| mike.jones@bynovix.com | BynovixAdmin@1 | Restricted |
+| john.doe@bynovix.com | BynovixManager@1 | Manager |
+| mike.kim@bynovix.com | BynovixRestricted@1 | Restricted |
+| anna.lin@bynovix.com | BynovixManager@1 | Manager |
+| tom.ross@bynovix.com | BynovixRestricted@1 | Restricted |
 
 ### Run Smoke Tests
 
