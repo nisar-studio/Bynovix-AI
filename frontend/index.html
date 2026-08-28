@@ -142,7 +142,7 @@
 <div id="app-shell" style="visibility:hidden; display:flex;">
 
 <!-- ========== SIDEBAR ========== -->
-<nav id="sidebar" class="flex flex-col h-screen left-0 w-64 border-r border-[#1f1f22] bg-[#0a0a0c] py-md overflow-y-auto flex-shrink-0 z-50">
+<nav id="sidebar" class="flex flex-col h-screen left-0 w-64 border-r border-[#1f1f22] bg-[#0a0a0c] py-md overflow-y-auto overflow-x-hidden flex-shrink-0 z-50">
   <!-- Brand -->
   <div class="px-md pb-lg mb-sm">
     <div class="flex items-center gap-sm">
@@ -354,95 +354,74 @@ window.AppState = {
 
 // ========== SUPABASE DATA HELPERS ==========
 window.DB = {
+  async _safe(fn, fallback) {
+    try { return await fn(); } catch(e) { console.warn('[DB]', e.message); return fallback; }
+  },
   async getForecasts() {
-    const { data } = await window._sb.from('forecasts').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('forecasts').select('*'); return data || []; }, []);
   },
   async getInsights() {
-    const { data } = await window._sb.from('insights').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('insights').select('*'); return data || []; }, []);
   },
   async getActions() {
-    const { data } = await window._sb.from('actions').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('actions').select('*'); return data || []; }, []);
   },
   async getSourceConnections() {
-    const { data } = await window._sb.from('source_connections').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('source_connections').select('*'); return data || []; }, []);
   },
   async getAuditEvents() {
-    const { data } = await window._sb.from('audit_events').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('audit_events').select('*'); return data || []; }, []);
   },
   async getThreats() {
-    const { data } = await window._sb.from('threats').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('threats').select('*'); return data || []; }, []);
   },
   async getPlaybooks() {
-    const { data } = await window._sb.from('playbooks').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('playbooks').select('*'); return data || []; }, []);
   },
   async getReports() {
-    const { data } = await window._sb.from('reports').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('reports').select('*'); return data || []; }, []);
   },
   async getProfiles() {
-    const { data } = await window._sb.from('profiles').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('profiles').select('*'); return data || []; }, []);
   },
   async getOrgPolicies() {
     return window.AppState.policies;
   },
   async getAnalyticalResults() {
-    const { data } = await window._sb.from('analytical_results').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('analytical_results').select('*'); return data || []; }, []);
   },
   async getSimulationScenarios() {
-    const { data } = await window._sb.from('simulation_scenarios').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('simulation_scenarios').select('*'); return data || []; }, []);
   },
   async getModulePermissions() {
-    const { data } = await window._sb.from('module_permissions').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('module_permissions').select('*'); return data || []; }, []);
   },
   async getLineageEdges() {
-    const { data } = await window._sb.from('lineage_edges').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('lineage_edges').select('*'); return data || []; }, []);
   },
   async getSecurityActions() {
-    const { data } = await window._sb.from('security_actions').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('security_actions').select('*'); return data || []; }, []);
   },
   async getApprovals() {
-    const { data } = await window._sb.from('approvals').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('approvals').select('*'); return data || []; }, []);
   },
   async getAuditEntries() {
-    const { data } = await window._sb.from('audit_entries').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('audit_entries').select('*'); return data || []; }, []);
   },
   async getSourceFields() {
-    const { data } = await window._sb.from('source_fields').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('source_fields').select('*'); return data || []; }, []);
   },
   async getFieldMappings() {
-    const { data } = await window._sb.from('field_mappings').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('field_mappings').select('*'); return data || []; }, []);
   },
   async getDataQualityMetrics() {
-    const { data } = await window._sb.from('data_quality_metrics').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('data_quality_metrics').select('*'); return data || []; }, []);
   },
   async getPlaybookRules() {
-    const { data } = await window._sb.from('playbook_rules').select('*');
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('playbook_rules').select('*'); return data || []; }, []);
   },
   async getLineageFor(entityType, entityId) {
-    const { data } = await window._sb.from('lineage_edges')
-      .select('*')
-      .or('source_entity_type.eq.'+entityType+',target_entity_type.eq.'+entityType)
-      .or('source_entity_id.eq.'+entityId+',target_entity_id.eq.'+entityId);
-    return data || [];
+    return this._safe(async () => { const { data } = await window._sb.from('lineage_edges').select('*').or('source_entity_type.eq.'+entityType+',target_entity_type.eq.'+entityType).or('source_entity_id.eq.'+entityId+',target_entity_id.eq.'+entityId); return data || []; }, []);
   },
   async getEntityLabel(type, id) {
     const tableMap = {
@@ -505,8 +484,76 @@ window.DB = {
           btn.classList.add('bg-primary/20','text-primary','border-primary/30');
         });
       }
-      if (txt.includes('Export') || txt.includes('Download')) btn.addEventListener('click', function() { btn.classList.add('ring-1','ring-primary'); setTimeout(function(){btn.classList.remove('ring-1','ring-primary');},300); });
-      if (txt.includes('Create Action')) btn.addEventListener('click', function() { location.hash = 'actions'; });
+      if (txt.includes('Export') || txt.includes('Download')) btn.addEventListener('click', function() {
+        // Generate CSV from current page table data
+        var table = btn.closest('[class]')?.querySelector('table') || contentArea.querySelector('table');
+        if (table) {
+          var rows = [];
+          table.querySelectorAll('tr').forEach(function(tr) {
+            var cells = [];
+            tr.querySelectorAll('th,td').forEach(function(td) { cells.push('"' + td.textContent.trim().replace(/"/g,'""') + '"'); });
+            rows.push(cells.join(','));
+          });
+          var blob = new Blob([rows.join('\n')], {type:'text/csv'});
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url; a.download = 'bynovix-export.csv'; a.click();
+          URL.revokeObjectURL(url);
+          btn.textContent = 'Exported!'; btn.classList.add('bg-emerald-600');
+          setTimeout(function(){ btn.textContent = txt; btn.classList.remove('bg-emerald-600'); }, 1500);
+        } else {
+          btn.classList.add('ring-1','ring-primary'); setTimeout(function(){btn.classList.remove('ring-1','ring-primary');},300);
+        }
+      });
+      if (txt.includes('Create Action')) btn.addEventListener('click', function() {
+        // Open Create Action modal
+        var modal = document.getElementById('create-action-modal');
+        if (modal) { modal.classList.remove('hidden'); } else {
+          // Create modal dynamically
+          var m = document.createElement('div');
+          m.id = 'create-action-modal';
+          m.className = 'fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm';
+          m.innerHTML = '<div class="bg-[#131720] border border-[#232A3B] rounded-xl p-6 w-full max-w-lg mx-4 shadow-2xl">'
+            + '<div class="flex items-center justify-between mb-4"><h3 class="text-lg font-semibold text-white">Create Action</h3>'
+            + '<button onclick="this.closest(\'#create-action-modal\').remove()" class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">close</span></button></div>'
+            + '<form id="create-action-form" class="space-y-4">'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Title</label>'
+            + '<input type="text" id="action-title" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Action title..." required></div>'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Description</label>'
+            + '<textarea id="action-desc" rows="3" class="w-full px-3 py-2 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Describe the action..."></textarea></div>'
+            + '<div class="grid grid-cols-2 gap-4">'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Priority</label>'
+            + '<select id="action-priority" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary outline-none"><option value="critical">Critical</option><option value="high" selected>High</option><option value="medium">Medium</option><option value="low">Low</option></select></div>'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Due Date</label>'
+            + '<input type="date" id="action-due" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary outline-none"></div>'
+            + '</div>'
+            + '<div class="flex justify-end gap-3 pt-2">'
+            + '<button type="button" onclick="this.closest(\'#create-action-modal\').remove()" class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancel</button>'
+            + '<button type="submit" class="px-4 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors">Create Action</button>'
+            + '</div></form></div>';
+          document.body.appendChild(m);
+          m.addEventListener('click', function(e) { if (e.target === m) m.remove(); });
+          document.getElementById('create-action-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var title = document.getElementById('action-title').value;
+            var desc = document.getElementById('action-desc').value;
+            var priority = document.getElementById('action-priority').value;
+            var due = document.getElementById('action-due').value;
+            var orgId = window.AppState.profile?.organization_id;
+            var userId = window.AppState.user?.id;
+            if (!orgId || !userId) { alert('Authentication required'); return; }
+            var { error } = await window._sb.from('actions').insert({
+              title: title, description: desc, priority: priority,
+              due_date: due || null, status: 'todo',
+              organization_id: orgId, created_by: userId
+            });
+            if (error) { alert('Error: ' + error.message); return; }
+            m.remove();
+            // Refresh actions page if on it
+            if (location.hash === '#actions') { currentPage = null; location.hash = ''; location.hash = 'actions'; }
+          });
+        }
+      });
       if (txt.includes('Date Range') || txt.includes('YTD') || txt.includes('This Month') || txt.includes('Last 7')) btn.addEventListener('click', function() { btn.classList.toggle('ring-1'); btn.classList.toggle('ring-primary'); });
       if (txt.includes('Save Changes') || txt === 'Save') btn.addEventListener('click', function() { var o=btn.textContent; btn.textContent='Saved!'; btn.classList.add('bg-emerald-600'); setTimeout(function(){btn.textContent=o;btn.classList.remove('bg-emerald-600');},1500); });
       if (txt === 'Cancel') btn.addEventListener('click', function() { location.hash = 'overview'; });
@@ -548,6 +595,8 @@ window.DB = {
     updateNav(page);
     document.title = `Bynovix AI - ${page.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}`;
 
+    // Show loading skeleton
+    contentArea.innerHTML = '<div class="p-lg animate-pulse space-y-4"><div class="h-8 w-64 bg-[#1a1a1f] rounded"></div><div class="h-4 w-96 bg-[#1a1a1f] rounded"></div><div class="grid grid-cols-4 gap-4 mt-6">'+Array(4).fill('<div class="h-28 bg-[#1a1a1f] rounded-xl"></div>').join('')+'</div><div class="h-64 bg-[#1a1a1f] rounded-xl mt-6"></div></div>';
     try {
       const resp = await fetch(pages[page]);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
