@@ -1,9 +1,48 @@
+# Dependencies
 node_modules/
-*.zip
-.DS_Store
-Thumbs.db
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# Build artifacts
+dist/
+build/
+.cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Supabase
 supabase/.temp/
 supabase/.env
+
+# Netlify
 .netlify/
 deploy/
-deploy/
+
+# OS
+.DS_Store
+Thurs.db
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+*.log
+npm-debug.log*
+
+# Freebuff internal
+.freebuff/
