@@ -89,7 +89,7 @@
 <div class="h-xl"></div>
 <script>
 (async function(){
-var w=function(){return new Promise(function(r){if(window.AppState&&window.AppState.profile)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile){clearInterval(c);r();}},100);});};
+var w=function(){return new Promise(function(r){if(window.AppState&&window.AppState.profile)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile){clearInterval(c);r();}},100);setTimeout(function(){clearInterval(c);r();},5000);});};
 await w();await new Promise(function(r){setTimeout(r,200);});
 try{
 var S=await window.DB.getSourceConnections(),F=await window.DB.getForecasts(),I=await window.DB.getInsights(),A=await window.DB.getActions();
