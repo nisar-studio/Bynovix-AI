@@ -335,20 +335,20 @@
         var sourceType = a.source_type==='ai_insight'?'AI Insights':a.source_type==='forecast'?'Forecast':'AI Analyst';
         var sourceIcon = a.source_type==='ai_insight'?'psychology':a.source_type==='forecast'?'trending_up':'smart_toy';
         html += '<tr class="border-b border-[#1f1f22] hover:bg-[#1a1a1f] cursor-pointer transition-colors">';
-        html += '<td class="p-3"><div class="font-medium text-white">'+a.title+'</div>';
-        html += '<div class="text-gray-400 text-xs mt-1">Due: '+(a.due_date||'TBD')+' • '+a.owner+'</div></td>';
+        html += '<td class="p-3"><div class="font-medium text-white">'+window.escHtml(a.title)+'</div>';
+        html += '<div class="text-gray-400 text-xs mt-1">Due: '+window.escHtml(a.due_date||'TBD')+' • '+window.escHtml(a.owner||'Unassigned')+'</div></td>';
         html += '<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/40 text-purple-400 border border-purple-700/50 text-xs font-label-mono">';
         html += '<span class="material-symbols-outlined text-[12px]">'+sourceIcon+'</span> '+sourceType+'</span></td>';
-        html += '<td class="p-3"><span class="'+priorityClass+' font-medium">'+a.priority.charAt(0).toUpperCase()+a.priority.slice(1)+'</span></td>';
-        html += '<td class="p-3"><span class="px-2 py-1 rounded-full '+statusClass+' text-xs font-medium">'+a.status.replace('_',' ').replace(/\b\w/g,function(c){return c.toUpperCase();})+'</span></td>';
+        html += '<td class="p-3"><span class="'+priorityClass+' font-medium">'+window.escHtml(a.priority.charAt(0).toUpperCase()+a.priority.slice(1))+'</span></td>';
+        html += '<td class="p-3"><span class="px-2 py-1 rounded-full '+statusClass+' text-xs font-medium">'+window.escHtml(a.status.replace('_',' '))+'</span></td>';
         html += '<td class="p-3 text-right"><div class="font-medium text-white">'+fmt$(a.expected_impact||0)+'</div>';
         html += '<div class="text-purple-400 text-xs mt-1 flex items-center justify-end gap-1">Conf: '+a.confidence+'%';
         html += ' <div class="w-12 h-1 bg-[#1f1f22] rounded-full overflow-hidden"><div class="h-full bg-purple-500 w-['+a.confidence+'%]"></div></div></div></td>';
         // Cross-module lineage: source insight link
         if (a.source_insight_id && insightMap[a.source_insight_id]) {
           var ins = insightMap[a.source_insight_id];
-          html += '<td class="p-3"><a href="#ai-insights" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/30 text-purple-300 border border-purple-700/30 text-[10px] font-label-mono hover:bg-purple-900/50 transition-colors" title="Source: '+ins.title+'">';
-          html += '<span class="material-symbols-outlined text-[10px]">link</span> '+ins.title.substring(0,18)+'...</a></td>';
+          html += '<td class="p-3"><a href="#ai-insights" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-900/30 text-purple-300 border border-purple-700/30 text-[10px] font-label-mono hover:bg-purple-900/50 transition-colors" title="Source: '+window.escHtml(ins.title)+'">';
+          html += '<span class="material-symbols-outlined text-[10px]">link</span> '+window.escHtml(ins.title.substring(0,18))+'...</a></td>';
         } else {
           html += '<td class="p-3"><span class="text-gray-500 text-xs">—</span></td>';
         }

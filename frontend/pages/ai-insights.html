@@ -324,8 +324,8 @@
         html += '<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-'+sevColor+'/20 text-'+sevColor+' font-label-mono text-label-mono border border-'+sevColor+'/30">';
         html += '<span class="material-symbols-outlined text-[14px]">'+(ins.severity==='high'?'warning':'lightbulb')+'</span> '+sevLabel+'</span>';
         html += '<span class="font-label-mono text-label-mono text-gray-400">'+ins.confidence+'% Confidence</span></div>';
-        html += '<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">'+ins.title+'</h3>';
-        html += '<p class="font-body-sm text-body-sm text-gray-400 mb-md">Type: '+ins.type.charAt(0).toUpperCase()+ins.type.slice(1)+'</p>';
+        html += '<h3 class="font-body-lg text-body-lg font-semibold text-white mb-xs">'+window.escHtml(ins.title)+'</h3>';
+        html += '<p class="font-body-sm text-body-sm text-gray-400 mb-md">Type: '+window.escHtml(ins.type.charAt(0).toUpperCase()+ins.type.slice(1))+'</p>';
         html += '<div class="flex justify-between items-end border-t border-[#1F2937] pt-sm"><div>';
         html += '<span class="font-label-mono text-label-mono text-gray-400 block mb-1">Impact</span>';
         html += '<span class="font-body-lg text-body-lg font-bold text-'+impactColor+'">'+impact+'</span></div></div></div>';
