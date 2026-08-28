@@ -352,6 +352,12 @@ window.AppState = {
   }
 })();
 
+// ========== XSS PROTECTION ==========
+window.escHtml = function(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+};
+
 // ========== SUPABASE DATA HELPERS ==========
 window.DB = {
   async _safe(fn, fallback) {
@@ -515,12 +521,13 @@ window.DB = {
           m.className = 'fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm';
           m.innerHTML = '<div class="bg-[#131720] border border-[#232A3B] rounded-xl p-6 w-full max-w-lg mx-4 shadow-2xl">'
             + '<div class="flex items-center justify-between mb-4"><h3 class="text-lg font-semibold text-white">Create Action</h3>'
-            + '<button onclick="this.closest(\'#create-action-modal\').remove()" class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">close</span></button></div>'
+            + '<button id="modal-close-btn" class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">close</span></button></div>'
             + '<form id="create-action-form" class="space-y-4">'
-            + '<div><label class="block text-sm text-gray-400 mb-1">Title</label>'
-            + '<input type="text" id="action-title" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Action title..." required></div>'
-            + '<div><label class="block text-sm text-gray-400 mb-1">Description</label>'
-            + '<textarea id="action-desc" rows="3" class="w-full px-3 py-2 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Describe the action..."></textarea></div>'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Title <span class="text-red-400">*</span></label>'
+            + '<input type="text" id="action-title" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Action title..." required minlength="2" maxlength="200"></div>'
+            + '<div><label class="block text-sm text-gray-400 mb-1">Description <span class="text-red-400">*</span></label>'
+            + '<textarea id="action-desc" rows="3" class="w-full px-3 py-2 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Describe the action..." required minlength="5" maxlength="2000"></textarea>'
+            + '<p class="text-xs text-gray-500 mt-1 hidden" id="action-desc-error"></p></div>'
             + '<div class="grid grid-cols-2 gap-4">'
             + '<div><label class="block text-sm text-gray-400 mb-1">Priority</label>'
             + '<select id="action-priority" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary outline-none"><option value="critical">Critical</option><option value="high" selected>High</option><option value="medium">Medium</option><option value="low">Low</option></select></div>'
@@ -528,28 +535,39 @@ window.DB = {
             + '<input type="date" id="action-due" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary outline-none"></div>'
             + '</div>'
             + '<div class="flex justify-end gap-3 pt-2">'
-            + '<button type="button" onclick="this.closest(\'#create-action-modal\').remove()" class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancel</button>'
-            + '<button type="submit" class="px-4 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors">Create Action</button>'
+            + '<button type="button" id="modal-cancel-btn" class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancel</button>'
+            + '<button type="submit" id="modal-submit-btn" class="px-4 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors">Create Action</button>'
             + '</div></form></div>';
           document.body.appendChild(m);
+          // Use addEventListener instead of onclick
+          m.querySelector('#modal-close-btn').addEventListener('click', function() { m.remove(); });
+          m.querySelector('#modal-cancel-btn').addEventListener('click', function() { m.remove(); });
           m.addEventListener('click', function(e) { if (e.target === m) m.remove(); });
           document.getElementById('create-action-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            var title = document.getElementById('action-title').value;
-            var desc = document.getElementById('action-desc').value;
+            var title = document.getElementById('action-title').value.trim();
+            var desc = document.getElementById('action-desc').value.trim();
             var priority = document.getElementById('action-priority').value;
             var due = document.getElementById('action-due').value;
+            // Validation
+            if (title.length < 2) return;
+            if (desc.length < 5) {
+              var errEl = document.getElementById('action-desc-error');
+              if (errEl) { errEl.textContent = 'Description must be at least 5 characters'; errEl.classList.remove('hidden'); }
+              return;
+            }
             var orgId = window.AppState.profile?.organization_id;
             var userId = window.AppState.user?.id;
             if (!orgId || !userId) { alert('Authentication required'); return; }
+            var submitBtn = document.getElementById('modal-submit-btn');
+            submitBtn.textContent = 'Creating...'; submitBtn.disabled = true;
             var { error } = await window._sb.from('actions').insert({
               title: title, description: desc, priority: priority,
               due_date: due || null, status: 'todo',
               organization_id: orgId, created_by: userId
             });
-            if (error) { alert('Error: ' + error.message); return; }
+            if (error) { submitBtn.textContent = 'Create Action'; submitBtn.disabled = false; alert('Error: ' + error.message); return; }
             m.remove();
-            // Refresh actions page if on it
             if (location.hash === '#actions') { currentPage = null; location.hash = ''; location.hash = 'actions'; }
           });
         }

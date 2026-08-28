@@ -219,8 +219,9 @@ async function main() {
 
   // ─── 8. FRONTEND FILE INTEGRITY ───────────────────────────
   console.log('\n8. FRONTEND FILE INTEGRITY\n');
-  const projRoot = path.join(__dirname, '..');
-  const idx = fs.readFileSync(path.join(projRoot, 'index.html'), 'utf8');
+  const projRoot = path.join(__dirname, '..', '..');
+  const frontendDir = path.join(projRoot, 'frontend');
+  const idx = fs.readFileSync(path.join(frontendDir, 'index.html'), 'utf8');
   assert('index.html: Supabase CDN', idx.includes('supabase-js'));
   assert('index.html: window._sb client', idx.includes('window._sb'));
   assert('index.html: window.AppState', idx.includes('window.AppState'));
@@ -233,11 +234,11 @@ async function main() {
   assert('index.html: getEntityLabel', idx.includes('getEntityLabel'));
   assert('index.html: no console.log', !idx.includes('console.log'));
 
-  const pages = fs.readdirSync(path.join(projRoot, 'pages'));
+  const pages = fs.readdirSync(path.join(frontendDir, 'pages'));
   const expectedPages = ['overview.html','analytics.html','ai-insights.html','ai-analyst.html','forecasts.html','what-if.html','actions.html','reports.html','data.html','team.html','security.html','settings.html'];
   for (const p of expectedPages) {
     assert('pages/' + p + ' exists', pages.includes(p));
-    const content = fs.readFileSync(path.join(projRoot, 'pages', p), 'utf8');
+    const content = fs.readFileSync(path.join(frontendDir, 'pages', p), 'utf8');
     assert(p + ': has DB integration', content.includes('window.DB'));
     assert(p + ': no console.log', !content.includes('console.log'));
   }
@@ -247,11 +248,11 @@ async function main() {
   const debugPatterns = ['debug_','test_','diag','FIX_','verify_','e2e_','rbac_diag','reseed_','try_','write_overview','generate_modules','phase7_','fix_actions','fix_insights','fix_rls','deep_diag'];
   const debugFiles = supabaseFiles.filter(f => debugPatterns.some(p => f.includes(p)));
   assert('No debug files in supabase/', debugFiles.length === 0, debugFiles.join(', '));
-  assert('6 migration files', fs.readdirSync(path.join(__dirname, 'migrations')).length === 6);
+  assert('6 migration files', fs.readdirSync(path.join(__dirname, '..', 'migrations')).length === 6);
 
   // ─── 9. EDGE FUNCTION STUBS ───────────────────────────────
   console.log('\n9. EDGE FUNCTION STUBS\n');
-  const fnDir = path.join(__dirname, 'functions');
+  const fnDir = path.join(__dirname, '..', 'functions');
   assert('sync-data-source stub', fs.existsSync(path.join(fnDir, 'sync-data-source', 'index.ts')));
   assert('generate-insight stub', fs.existsSync(path.join(fnDir, 'generate-insight', 'index.ts')));
   assert('respond-to-threat stub', fs.existsSync(path.join(fnDir, 'respond-to-threat', 'index.ts')));

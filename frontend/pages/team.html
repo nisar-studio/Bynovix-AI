@@ -1,243 +1,124 @@
-<main class="flex-1 flex flex-col h-full bg-background">
-<!-- TopNavBar -->
-<header class="h-16 border-b border-outline-variant bg-surface flex items-center justify-between px-lg shrink-0 w-full z-40 sticky top-0">
-<div class="flex items-center gap-md">
-<div class="relative hidden md:block">
-<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-<input class="bg-surface-variant border-outline text-on-background text-sm rounded-lg pl-9 pr-4 py-1.5 focus:ring-1 focus:ring-primary focus:border-primary w-64 placeholder-on-surface-variant transition-all border" placeholder="Search members..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-lg">
-<button class="text-on-surface-variant hover:text-primary transition-colors p-sm">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors p-sm">
-<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
-</button>
-<button class="font-button text-button text-on-surface-variant hover:text-primary transition-colors">
-                    Support
-                </button>
-<button class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant hover:border-primary transition-colors" title="Profile">
-<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn14kLoRScAfanZinrXLULebmMgdzDd_w4gSLzK_82zVzr9rcyyUdV-mP1Fc7cli969k7bDlOuLU5V1gppC1b2l7fls_ZHTpeJlSldGtrQr4vPW97IyXkkUmhRJ4wtSprdMPlaXUvs8TAPWsw8zueKZzfZnrd5nBjn3oZR3a2r_ZymEOInHAxAXFqBM80A7F8cEbPYUEwzCZBR7O7ndQZGBZjLQACy6WZ4mfYyUoJqiRQlKZb-IZWg">
-</button>
-</div>
-</header>
-<!-- Page Content Canvas -->
-<div class="flex-1 overflow-y-auto p-xl flex flex-col gap-lg">
+<main class="flex-1 flex flex-col h-full bg-[#0C0C0E] overflow-y-auto p-xl flex flex-col gap-lg">
 <!-- Page Header & Actions -->
 <div class="flex justify-between items-end">
 <div>
-<h1 class="font-headline-lg text-headline-lg text-on-background mb-xs">Team &amp; Permissions</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Manage members, roles, and access across the Bynovix Intelligence Suite.</p>
+<h1 class="font-headline-lg text-headline-lg text-white mb-xs">Team &amp; Permissions</h1>
+<p class="font-body-lg text-body-lg text-gray-400">Manage members, roles, and access across the Bynovix Intelligence Suite.</p>
 </div>
 <div class="flex items-center gap-sm">
-<button class="px-md py-sm bg-surface-variant border border-outline rounded-lg text-on-background font-button text-sm hover:border-primary transition-colors flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
-                        Filter
-                    </button>
-<button class="px-md py-sm bg-surface-variant border border-outline rounded-lg text-on-background font-button text-sm hover:border-primary transition-colors flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
-                        Export
-                    </button>
-<button class="px-md py-sm bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-button text-sm shadow-[0_0_15px_rgba(79,70,229,0.2)] hover:shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all flex items-center gap-xs" onclick="document.getElementById('inviteModal').classList.remove('hidden')">
-<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
-                        Invite Member
-                    </button>
+<button class="px-md py-sm bg-[#1A1A1C] border border-[#232A3B] rounded-lg text-white font-button text-sm hover:border-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+</button>
+<button class="px-md py-sm bg-[#1A1A1C] border border-[#232A3B] rounded-lg text-white font-button text-sm hover:border-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">download</span> Export
+</button>
+<button id="invite-btn" class="px-md py-sm bg-primary text-white rounded-lg font-button text-sm shadow-[0_0_15px_rgba(99,102,241,0.2)] hover:bg-primary-hover transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">add</span> Invite Member
+</button>
 </div>
 </div>
-<!-- KPI Row (Bento Style) -->
-<div class="grid grid-cols-5 gap-md">
-<!-- KPI Card -->
-<div class="bg-surface-variant border border-outline p-md rounded-xl flex flex-col gap-xs relative overflow-hidden group hover:border-primary/50 transition-colors">
-<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Total Members</span>
-<span class="font-display-kpi text-display-kpi text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">24</span>
+<!-- KPI Row -->
+<div class="grid grid-cols-3 gap-md">
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-md rounded-xl flex flex-col gap-xs">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Total Members</span>
+<span id="team-kpi-total" class="font-display-kpi text-display-kpi text-primary">—</span>
 </div>
-<div class="bg-surface-variant border border-outline p-md rounded-xl flex flex-col gap-xs relative overflow-hidden group hover:border-primary/50 transition-colors">
-<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Active</span>
-<span class="font-display-kpi text-display-kpi text-on-background">21</span>
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-md rounded-xl flex flex-col gap-xs">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Active</span>
+<span id="team-kpi-active" class="font-display-kpi text-display-kpi text-white">—</span>
 </div>
-<div class="bg-surface-variant border border-outline p-md rounded-xl flex flex-col gap-xs relative overflow-hidden group hover:border-primary/50 transition-colors">
-<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Pending</span>
-<span class="font-display-kpi text-display-kpi text-error">2</span>
-</div>
-<div class="bg-surface-variant border border-outline p-md rounded-xl flex flex-col gap-xs relative overflow-hidden group hover:border-primary/50 transition-colors">
-<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Administrators</span>
-<span class="font-display-kpi text-display-kpi text-on-background">3</span>
-</div>
-<div class="bg-surface-variant border border-outline p-md rounded-xl flex flex-col gap-xs relative overflow-hidden group hover:border-primary/50 transition-colors">
-<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Teams</span>
-<span class="font-display-kpi text-display-kpi text-on-background">6</span>
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-md rounded-xl flex flex-col gap-xs">
+<span class="font-label-mono text-label-mono text-gray-400 uppercase">Roles</span>
+<span id="team-kpi-roles" class="font-display-kpi text-display-kpi text-white">—</span>
 </div>
 </div>
 <!-- Two Column Layout -->
 <div class="flex gap-lg flex-1 min-h-0">
-<!-- Left Col: Directory Table -->
-<div class="flex-[2] bg-surface-variant border border-outline rounded-xl flex flex-col overflow-hidden">
-<div class="px-md py-sm border-b border-outline bg-surface-container flex justify-between items-center shrink-0">
-<span class="font-button text-button text-on-background">Member Directory</span>
+<div class="flex-[2] bg-[#1A1A1C] border border-[#232A3B] rounded-xl flex flex-col overflow-hidden">
+<div class="px-md py-sm border-b border-[#232A3B] flex justify-between items-center shrink-0">
+<span class="font-button text-button text-white">Member Directory</span>
 </div>
 <div class="flex-1 overflow-auto">
 <table class="w-full text-left border-collapse">
-<thead class="sticky top-0 bg-surface-variant z-10 border-b border-outline shadow-sm">
+<thead class="sticky top-0 bg-[#1A1A1C] z-10 border-b border-[#232A3B]">
 <tr>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap">Member</th>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap">Role</th>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap">Team</th>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap">Status</th>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap hidden lg:table-cell">Last Active</th>
-<th class="p-sm font-label-mono text-label-mono text-on-surface-variant uppercase whitespace-nowrap text-right">Actions</th>
+<th class="p-sm font-label-mono text-label-mono text-gray-400 uppercase whitespace-nowrap">Member</th>
+<th class="p-sm font-label-mono text-label-mono text-gray-400 uppercase whitespace-nowrap">Role</th>
+<th class="p-sm font-label-mono text-label-mono text-gray-400 uppercase whitespace-nowrap">Status</th>
+<th class="p-sm font-label-mono text-label-mono text-gray-400 uppercase whitespace-nowrap">Actions</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-outline font-body-sm text-body-sm text-on-background">
-<!-- Row 1 -->
-<tr class="hover:bg-surface/50 transition-colors cursor-pointer bg-primary/5" onclick="document.getElementById('detailPanel').classList.remove('hidden')">
-<td class="p-sm">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container border border-outline overflow-hidden shrink-0">
-<img alt="Sarah Lee Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACpNbmrDMIpj_HopEeJNz6RTM0q-6FMO_3BUX_rD4C4118mOxaQqqQJdCxf--bTQHbMtzV46KXvxkgNhp_UeIycVTPYBfIChf801ARrxQtBF4aGG01vJnnopR9kXKmzRO64TURXW0_DSZehD3sA7A3ZENWuhPQz9OptLqrd5LsmdSOm-DhVC_YOtkHDAdMc4DrvI_0xpcey47jY7kdaXZPq7-1sagBXgbMnE95OY5nTkltLBd3LO5Z">
-</div>
-<div class="flex flex-col">
-<span class="font-semibold text-primary-fixed-dim">Sarah Lee</span>
-<span class="text-xs text-on-surface-variant">sarah.lee@bynovix.com</span>
-</div>
-</div>
-</td>
-<td class="p-sm">Admin</td>
-<td class="p-sm">Executive</td>
-<td class="p-sm">
-<span class="inline-flex items-center px-2 py-0.5 rounded bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20 text-xs font-medium">
-                                            Active
-                                        </span>
-</td>
-<td class="p-sm hidden lg:table-cell text-on-surface-variant">2 mins ago</td>
-<td class="p-sm text-right">
-<button class="p-xs text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
-</button>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface/50 transition-colors">
-<td class="p-sm">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-surface-container border border-outline overflow-hidden shrink-0">
-<img alt="John Doe Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxxFIwKzmCgAUXoNaxvUr3r2R1hLwhW0AZVazdJfLMDP7ZSk1LixeoUMEsZOw7Rl1eoktIfn_YTKyQeNW83kFrLC_t92xiQvCecWKX2Tq3pXpRgcAo5VAxdARi01HeYksfes8F5US3BOAWdk8f6muVBx7tAiCJtBGAcAmvtCkzukCUou9UeVwVJuYf4ZAn5sVHdQSK-tC_QHeLeyYsxEn6mZpTB6Q5E4ETt27jZ4kvMDfyeF-c-6mn">
-</div>
-<div class="flex flex-col">
-<span class="font-medium text-on-background">John Doe</span>
-<span class="text-xs text-on-surface-variant">john.doe@bynovix.com</span>
-</div>
-</div>
-</td>
-<td class="p-sm">Manager</td>
-<td class="p-sm">Revenue</td>
-<td class="p-sm">
-<span class="inline-flex items-center px-2 py-0.5 rounded bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20 text-xs font-medium">
-                                            Active
-                                        </span>
-</td>
-<td class="p-sm hidden lg:table-cell text-on-surface-variant">1 hour ago</td>
-<td class="p-sm text-right">
-<button class="p-xs text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
-</button>
-</td>
-</tr>
+<tbody id="team-members-tbody" class="divide-y divide-[#232A3B] font-body-sm text-body-sm text-white">
+<tr><td colspan="4" class="p-4 text-center text-gray-500">Loading members...</td></tr>
 </tbody>
 </table>
 </div>
 </div>
-<!-- Right Col: Detail Panel -->
-<div class="flex-1 bg-surface-variant border border-outline rounded-xl flex flex-col overflow-hidden hidden xl:flex" id="detailPanel">
-<div class="px-md py-md border-b border-outline flex justify-between items-start bg-surface-container">
-<div class="flex gap-md">
-<div class="w-12 h-12 rounded-full border border-primary overflow-hidden shrink-0 mt-xs">
-<img alt="Sarah Lee Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAws2NYvWwKtEa_2iCCs_N6ZFVtBugY3n1IE4oJTcKGLz68lKiHOryFMAz7VLy-yoWxRkmJfbyQXYdQc5M93BvtYiusq3X93l-84LLxZKqNiQbmk111U9AmGPd8NioGT325HiH133m8IRvxTM66O_GePS-7N9VsPdltFmsXypnnvbc5NhA6E9rJjyqyAKKa0qfRqLpaJX8vfifwyaMt_Pw5nBrxezX2_QNE3MLUnPLXw_7RkkhtZTo-">
+<div class="flex-1 bg-[#1A1A1C] border border-[#232A3B] rounded-xl flex flex-col overflow-hidden" id="team-detail">
+<div class="px-md py-md border-b border-[#232A3B]">
+<h3 class="font-headline-md text-headline-md text-white">Member Details</h3>
 </div>
-<div class="flex flex-col">
-<h2 class="font-headline-md text-headline-md text-on-background">Sarah Lee</h2>
-<span class="font-body-sm text-body-sm text-on-surface-variant">sarah.lee@bynovix.com</span>
-<div class="flex items-center gap-sm mt-xs">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface border border-outline text-on-background">Admin</span>
-<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface border border-outline text-on-background">Executive</span>
-<span class="font-label-mono text-label-mono text-on-surface-variant text-[10px] ml-auto">Last Active: 2m ago</span>
+<div class="flex-1 overflow-y-auto p-md">
+<p class="text-gray-500 text-sm">Select a member to view details.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="flex-1 overflow-y-auto p-md flex flex-col gap-md">
-<div>
-<h3 class="font-button text-button text-on-background mb-sm flex items-center gap-xs">
-<span class="material-symbols-outlined text-sm text-primary" data-icon="shield">shield</span>
-                                Module Permissions
-                            </h3>
-<div class="border border-outline rounded-lg overflow-hidden bg-surface divide-y divide-outline">
-<!-- Perm Row -->
-<div class="p-sm flex justify-between items-center hover:bg-surface-container transition-colors">
-<span class="font-body-sm text-body-sm text-on-background">Overview</span>
-<select class="text-xs p-1 border-outline rounded bg-surface-variant text-on-background font-body-sm focus:border-primary focus:ring-0">
-<option>View</option>
-<option>Edit</option>
-<option selected="">Manage</option>
-<option>No Access</option>
-</select>
-</div>
-<!-- Perm Row -->
-<div class="p-sm flex justify-between items-center hover:bg-surface-container transition-colors border-l-2 border-primary bg-primary/5">
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-xs text-primary" data-icon="auto_awesome">auto_awesome</span>
-<span class="font-body-sm text-body-sm text-on-background font-medium">AI Insights</span>
-</div>
-<select class="text-xs p-1 border-outline rounded bg-surface-variant text-on-background font-body-sm focus:border-primary focus:ring-0">
-<option>View</option>
-<option>Edit</option>
-<option selected="">Manage</option>
-<option>No Access</option>
-</select>
+<!-- Invite Modal -->
+<div id="inviteModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+<div class="bg-[#131720] border border-[#232A3B] rounded-xl p-6 w-full max-w-md mx-4 shadow-2xl">
+<h3 class="text-lg font-semibold text-white mb-4">Invite Member</h3>
+<p class="text-sm text-gray-400 mb-4">Enter the email address to send an invitation to.</p>
+<input type="email" id="invite-email" placeholder="member@company.com" class="w-full h-10 px-3 rounded-lg bg-[#1A1D24] border border-[#1F2937] text-white text-sm focus:border-primary outline-none mb-4"/>
+<div class="flex justify-end gap-3">
+<button id="invite-cancel" class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancel</button>
+<button id="invite-submit" class="px-4 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors">Send Invite</button>
 </div>
 </div>
 </div>
-</div>
-<div class="p-md border-t border-outline bg-surface flex gap-sm justify-end shrink-0">
-<button class="px-md py-sm bg-surface border border-outline rounded-lg text-on-background font-button text-sm hover:border-primary transition-colors">
-                            Reset
-                        </button>
-<button class="px-md py-sm border border-error text-error rounded-lg font-button text-sm hover:bg-error/10 transition-colors">
-                            Disable Member
-                        </button>
-<button class="px-md py-sm bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-button text-sm shadow-[0_0_15px_rgba(79,70,229,0.2)] hover:shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all">
-                            Save Changes
-                        </button>
-</div>
-</div>
-</div>
-</div>
-</main>
 <script>
 (function(){
   function waitForDB(){return new Promise(function(r){if(window.AppState&&window.AppState.profile&&window.DB)return r();var c=setInterval(function(){if(window.AppState&&window.AppState.profile&&window.DB){clearInterval(c);r();}},100);});}
   waitForDB().then(async function(){
     try{
-      
+    var esc = window.escHtml || function(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
     var profiles = await window.DB.getProfiles();
-    var perms = await window.DB.getModulePermissions();
-    
-    // Update team member list/cards if present
-    // The page uses static cards; we update them with real data
-    var cards = document.querySelectorAll('[class*="member"], [class*="card"], tr');
-    
-    // Update any displayed member count
-    var countEls = document.querySelectorAll('.font-display-kpi, .font-headline-lg');
-    countEls.forEach(function(el){
-      if (el.textContent.trim() === '5' || el.textContent.trim() === String(profiles.length)) {
-        // This might be the team count - leave it
-      }
-    });
-    
-    // Update role badges in the team view
-    var roleEls = document.querySelectorAll('[class*="role"], [class*="badge"]');
-  
-    }catch(e){console.error('Module init error:',e);}
-  });
-})();
-</script>
+    var total = profiles.length;
+    var active = profiles.filter(function(p){return p.status!=='inactive';}).length;
+    var roles = [];
+    profiles.forEach(function(p){if(roles.indexOf(p.role)===-1)roles.push(p.role);});
+    var kt = document.getElementById('team-kpi-total');
+    var ka = document.getElementById('team-kpi-active');
+    var kr = document.getElementById('team-kpi-roles');
+    if(kt) kt.textContent = total;
+    if(ka) ka.textContent = active;
+    if(kr) kr.textContent = roles.length;
+
+    var tbody = document.getElementById('team-members-tbody');
+    if(tbody && profiles.length > 0){
+      var html = '';
+      profiles.forEach(function(p, idx){
+        var initials = (p.full_name||p.email||'?').split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+        var roleColor = p.role==='admin'?'text-primary':p.role==='manager'?'text-amber-400':'text-gray-400';
+        var statusColor = p.status==='active'?'bg-emerald-500/10 text-emerald-400':'bg-gray-500/10 text-gray-400';
+        html += '<tr class="hover:bg-[#232A3B]/50 transition-colors cursor-pointer" data-idx="'+idx+'">';
+        html += '<td class="p-sm"><div class="flex items-center gap-sm">';
+        html += '<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30">';
+        html += '<span class="text-xs font-bold text-primary">'+esc(initials)+'</span></div>';
+        html += '<div class="flex flex-col"><span class="font-semibold text-white">'+esc(p.full_name||p.email)+'</span>';
+        html += '<span class="text-xs text-gray-400">'+esc(p.email)+'</span></div></div></td>';
+        html += '<td class="p-sm"><span class="'+roleColor+' font-medium capitalize">'+esc(p.role||'restricted')+'</span></td>';
+        html += '<td class="p-sm"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium '+statusColor+' capitalize">'+esc(p.status||'active')+'</span></td>';
+        html += '<td class="p-sm text-right"><button class="p-xs text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button></td>';
+        html += '</tr>';
+      });
+      tbody.innerHTML = html;
+      tbody.querySelectorAll('tr[data-idx]').forEach(function(tr){
+        tr.addEventListener('click', function(e){
+          if(e.target.closest('button')) return;
+          var idx = parseInt(tr.dataset.idx);
+          var p = profiles[idx];
+          if(!p) return;
+          var detail = document.getElementById('team-detail');
+          if(!detail) return;
+          var initials = (p.full_name||p.email||'?').split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+          detail.innerHTML = '<div class="px-md py-md border-b border-[#232A3B] flex justify-between items-start"><div class="flex gap-md"><div class="w-12 h-12 rounded-full bg-primary/20 border border-primary flex items-center justify-center shrink-0"><span class="text-sm font

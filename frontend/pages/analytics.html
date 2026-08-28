@@ -1,17 +1,17 @@
-<main class="flex-1 overflow-y-auto p-lg">
+<main class="flex-1 overflow-y-auto p-lg bg-[#0C0C0E]">
 <div class="flex justify-between items-end mb-lg">
 <div>
 <h2 class="font-headline-lg text-headline-lg font-bold text-white tracking-tight">Analytics</h2><div class="flex items-center gap-xs mt-xs">
 <span class="material-symbols-outlined text-sm text-primary dark:text-primary-fixed-dim">database</span>
-<span class="font-label-mono text-label-mono text-slate-500">Data Source: Salesforce CRM (Mapped)</span>
+<span class="font-label-mono text-label-mono text-gray-500">Data Source: Salesforce CRM (Mapped)</span>
 </div>
-<p class="font-body-md text-body-md text-slate-400 mt-xs">Explore business performance, trends, and drivers.</p>
+<p class="font-body-md text-body-md text-gray-400 mt-xs">Explore business performance, trends, and drivers.</p>
 </div>
 <div class="flex gap-sm">
-<button class="bg-card-slate border border-slate-700 text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
+<button class="bg-[#1A1A1C] border border-[#232A3B] text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
 <span class="material-symbols-outlined text-sm">calendar_today</span> Last 12 Months
                     </button>
-<button class="bg-card-slate border border-slate-700 text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
+<button class="bg-[#1A1A1C] border border-[#232A3B] text-white font-button text-button px-md py-sm rounded flex items-center gap-xs">
                         Compare
                     </button>
 <button class="bg-primary hover:bg-primary-container text-white font-button text-button px-md py-sm rounded flex items-center gap-xs transition-colors">
@@ -22,39 +22,39 @@
 <!-- Empty state for brief execution -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
 <!-- Total Revenue -->
-<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-lg rounded-lg flex flex-col gap-sm">
   <div class="flex justify-between items-start">
-    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">Total Revenue</span>
+    <span class="text-gray-400 font-label-mono text-label-mono uppercase tracking-wider">Total Revenue</span>
     <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">link</span>
   </div>
   <div id="a-revenue" class="text-headline-lg font-bold text-white">—</div>
   <div class="flex items-center gap-xs">
     <span class="material-symbols-outlined text-sm text-primary">verified</span>
-    <span class="text-slate-500 font-label-mono text-label-mono" id="a-revenue-map">Loading...</span>
+    <span class="text-gray-500 font-label-mono text-label-mono" id="a-revenue-map">Loading...</span>
   </div>
 </div>
 <!-- Growth Rate -->
-<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-lg rounded-lg flex flex-col gap-sm">
   <div class="flex justify-between items-start">
-    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">MoM Growth</span>
+    <span class="text-gray-400 font-label-mono text-label-mono uppercase tracking-wider">MoM Growth</span>
     <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">link</span>
   </div>
   <div id="a-growth" class="text-headline-lg font-bold text-white">—</div>
   <div class="flex items-center gap-xs">
     <span class="material-symbols-outlined text-sm text-primary">verified</span>
-    <span class="text-slate-500 font-label-mono text-label-mono" id="a-growth-map">Loading...</span>
+    <span class="text-gray-500 font-label-mono text-label-mono" id="a-growth-map">Loading...</span>
   </div>
 </div>
 <!-- Baseline Records -->
-<div class="bg-card-slate border border-slate-700 p-lg rounded-lg flex flex-col gap-sm">
+<div class="bg-[#1A1A1C] border border-[#232A3B] p-lg rounded-lg flex flex-col gap-sm">
   <div class="flex justify-between items-start">
-    <span class="text-slate-400 font-label-mono text-label-mono uppercase tracking-wider">Processed Records</span>
+    <span class="text-gray-400 font-label-mono text-label-mono uppercase tracking-wider">Processed Records</span>
     <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">database</span>
   </div>
   <div id="a-records" class="text-headline-lg font-bold text-white">—</div>
   <div class="flex items-center gap-xs">
     <span class="material-symbols-outlined text-sm text-primary">verified</span>
-    <span class="text-slate-500 font-label-mono text-label-mono" id="a-records-map">Loading...</span>
+    <span class="text-gray-500 font-label-mono text-label-mono" id="a-records-map">Loading...</span>
   </div>
 </div>
 </div>
@@ -86,7 +86,7 @@
       var rEl = document.getElementById('a-regions');
       Object.keys(rNames).forEach(function(k){
         var v = regions[k] || 0;
-        rEl.innerHTML += '<div class="bg-card-slate border border-slate-700 p-md rounded-lg"><div class="text-slate-400 font-label-mono text-label-mono uppercase text-sm mb-1">'+rNames[k]+'</div><div class="text-xl font-bold text-white">'+fmt$(v)+'</div></div>';
+        rEl.innerHTML += '<div class="bg-[#1A1A1C] border border-[#232A3B] p-md rounded-lg"><div class="text-gray-400 font-label-mono text-label-mono uppercase text-sm mb-1">'+rNames[k]+'</div><div class="text-xl font-bold text-white">'+fmt$(v)+'</div></div>';
       });
     }
     function fmt$(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+n.toLocaleString();}

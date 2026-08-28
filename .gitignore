@@ -46,3 +46,4 @@ npm-debug.log*
 
 # Freebuff internal
 .freebuff/
+node_modules/
